@@ -1,2 +1,1 @@
-# swwang.github.io
-sbwedding
+#sbteam's wedding website
