@@ -1,8 +1,49 @@
+body {
+  font-size: 3vmin;
+}
+
+#header {
+  background: url("bog.jpg");
+  background-size: cover;
+  width: 100%;
+  text-align: center;
+}
+
 #announcement {
+  padding: 2em 0;
+  margin: 0 auto;
+  width: 60%;
+  min-width: 480px;
+  margin: 0 auto;
+
   background-color: #79804d80;
   font-family: "Parisienne", "Lucida Handwriting", cursive;
 }
 
+#announcement #names {
+  font-size: 3em;
+}
+#announcement #getting-married {
+  font-size: 2em;
+}
+
+#info-container {
+  background-color: rgba(0.3, 0.3, 0.3, 0.3);
+}
+
+#info {
+  width: 60%;
+  min-width: 480px;
+  margin: 0 auto;
+
+  background-color: #FFFFFF;
+  border: 1px solid;
+  min-height: 1080px;
+}
+
 .text {
+  line-height: 1.2em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
   font-family: "Grandstander", sans-serif;
 }
