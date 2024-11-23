@@ -72,3 +72,8 @@ body {
 #save-content div {
   padding: 0.3em 0;
 }
+
+#save-loc a {
+  color: #fbfbfbbf;
+  text-decoration: none;
+}
