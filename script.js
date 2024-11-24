@@ -5,19 +5,20 @@ const time = Date.now();
 
 document.addEventListener("DOMContentLoaded", () => {
 	let button = document.getElementById("button");
-	let container = document.getElementById("container");
+	let background = document.getElementById("background");
+	let blur = document.getElementById("blur");
 	let save = document.getElementById("save");
-	let saveContent = document.getElementById("save-content");
 
 	let click = () => {
 	    button.style.display = "none";
+	    button.style.flex = "0";
 
-	    save.style.backdropFilter = "blur(3px)";
-	    save.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+	    blur.style.backdropFilter = "blur(3px)";
+	    blur.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 
-	    saveContent.style.opacity = "1";
+	    save.style.opacity = "1";
 
-	    container.style.backgroundSize = "auto 160%";
+	    background.style.backgroundSize = "auto 160%";
 	}
 
 	setTimeout(() => {
