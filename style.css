@@ -11,7 +11,7 @@ body {
   position: absolute;
 
   background: url("trees.jpg") no-repeat center center fixed;
-  background-size: 100% auto;
+  background-size: auto 120%;
 
   text-align: center;
 

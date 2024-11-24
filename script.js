@@ -1,6 +1,6 @@
 
 const loadTime = 750;
-const clickTime = 3000;
+const clickTime = 5000;
 const time = Date.now();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	    button.style.display = "none";
 
 	    save.style.backdropFilter = "blur(3px)";
-	    save.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+	    save.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 
 	    saveContent.style.opacity = "1";
 
-	    container.style.backgroundSize = "133% auto";
+	    container.style.backgroundSize = "auto 160%";
 	}
 
 	setTimeout(() => {
