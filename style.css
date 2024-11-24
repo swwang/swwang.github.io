@@ -1,3 +1,8 @@
+html {
+  -webkit-text-size-adjust: none;
+  touch-action: manipulation;
+}
+
 body {
   font-size: 3vmin;
   text-align: center;
