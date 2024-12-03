@@ -28,7 +28,7 @@ body {
 .centered {
   position: absolute;
   flex: 0;
-  white-space: nowrap;
+  white-space: normal;
   display: inline-block;
 }
 
@@ -81,10 +81,18 @@ body {
 
 #save div {
   position: relative;
-  padding: 0.3em 0;
+  padding: 0.4em 1em;
 }
 
-#save-loc a {
+#link-loc {
   color: #fbfbfbbf;
-  text-decoration: none;
+}
+
+#link-form {
+  color: #fbfbfbbf;
+  font-weight: bold;
+}
+
+#save-more {
+  font-size: 0.8em;
 }
