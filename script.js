@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let background = document.getElementById("background");
 	let blur = document.getElementById("blur");
 	let save = document.getElementById("save");
+	let form = document.getElementById("form");
 
 	let click = () => {
 	    button.style.display = "none";
@@ -18,7 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	    save.style.opacity = "1";
 
-	    background.style.backgroundSize = "auto 160%";
+	    background.style.backgroundSize = "auto 150%";
+
+	    setTimeout(() => {
+	    	form.style.bottom = "2em";
+	    }, 3300);
 	}
 
 	setTimeout(() => {
