@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	    save.style.opacity = "1";
 
-	    background.style.backgroundSize = "auto 150%";
+	    background.style.backgroundSize = "auto 133%";
 
 	    setTimeout(() => {
 	    	form.style.bottom = "2em";

@@ -11,10 +11,11 @@ html {
 
 body {
   font-size: 3vmin;
+  font-weight: 300;
   text-align: center;
 
   background-color: black;
-  color: #fbfbfbbf;
+  color: rgba(255, 250, 220, 0.7);
 }
 
 /* fallback */
@@ -59,7 +60,7 @@ body {
 
 #background {
   background: url("trees.jpg") no-repeat center center fixed;
-  background-size: auto 120%;
+  background-size: auto 125%;
 
   transition: background-size ease-in 2.5s;
 }
@@ -72,7 +73,7 @@ body {
 
 #button {
   opacity: 0;
-  background-color: rgba(121, 128, 77, 0.7);
+  background-color: rgba(110, 130, 75, 0.5);
   font-family: "Parisienne", "Lucida Handwriting", cursive;
 
   font-size: 2em;
@@ -84,13 +85,13 @@ body {
 }
 
 #button:hover {
-  background-color: rgba(121, 128, 77, 0.9);
+  background-color: rgba(110, 130, 75, 0.7);
   border-radius: 0.3em;
 }
 
 #blur {
   backdrop-filter: blur(0px);
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 250, 220, 1);
 
   transition: background-color ease-in 2.5s, backdrop-filter ease-in 2.5s;
 }
@@ -100,12 +101,11 @@ body {
 
   transition: opacity ease-in 2.5s;
 
-  font-size: 1.5em;
   font-family: "Grandstander", sans-serif;
 
-  border: 0.2em solid #fbfbfb;
-  background-color: #d7b6b180;
-  border-radius: 0.5em;
+  border: 0.3em solid rgba(255, 250, 220, 1);
+  background-color: rgba(162, 126, 134, 0.5);
+  border-radius: 1em;
   padding: 0.5em;
 }
 
@@ -114,17 +114,24 @@ body {
   padding: 0.4em 1em;
 }
 
+#save-sb {
+  font-size: 2em;
+  font-weight: 500;
+}
+
 #save-date, #save-loc {
-  font-size: 0.8em;
+  font-size: 1.3em;
 }
 
 #link-loc {
-  color: #fbfbfbbf;
+  color: rgba(255, 250, 220, 1);
 }
 
 #link-form {
-  color: #fbfbfbbf;
-  font-weight: bold;
+  color: rgba(255, 250, 220, 1);
+
+  font-weight: 500;
+
 }
 
 #form {
@@ -132,14 +139,13 @@ body {
   position: absolute;
   bottom: -3em;
   font-size: 1em;
+  font-weight: 100;
 
   max-width: 60%;
 
-  color: #fbfbfbff;
-
-  transition: bottom cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  transition: bottom cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.5s;
 }
 
 .forest {
-  color: #9cb0a4;
+  color: rgb(110, 130, 75);
 }
