@@ -137,9 +137,10 @@ body {
 #form {
   font-family: "Grandstander", sans-serif;
   position: absolute;
-  bottom: -3em;
-  font-size: 1em;
+  bottom: -4em;
+  font-size: 1.2em;
   font-weight: 100;
+  line-height: 1.1em;
 
   max-width: 60%;
 
