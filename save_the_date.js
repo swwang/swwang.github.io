@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    button.style.flex = "0";
 
 	    blur.style.backdropFilter = "blur(3px)";
-	    blur.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+	    blur.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
 
 	    save.style.opacity = "1";
 

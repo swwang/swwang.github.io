@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./ts",
+        "rootDir": "./ts",
+        "target": "es6",
+        "outDir": "js",
+        "module": "commonjs",
+        "noResolve": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "experimentalDecorators": true,
+        "isolatedModules": false,
+        "lib": [
+            "dom",
+            "es2015.promise",
+            "es5"
+        ],
+        "declaration": true,
+    },
+}
