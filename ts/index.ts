@@ -19,15 +19,23 @@ namespace Id {
 		return document.getElementById(id + "-button");
 	}
 
+	export function getInfo() : HTMLElement {
+		return document.getElementById("info");
+	}
+
 	export function getArrow() : HTMLElement {
 		return document.getElementById("arrow");
+	}
+
+	export function getClose() : HTMLElement {
+		return document.getElementById("close");
 	}
 }
 
 
 type Rec = {
 	name: string;
-	
+
 }
 namespace Recs {
 	const bayArea = [
@@ -51,6 +59,15 @@ function hideSection(id : string) : void {
 	section.style.opacity = "0";
 	section.style.display = "none";
 	document.getElementById("info").style.display = "none";
+
+	if (currentSection === id) {
+		currentSection = "";
+	}
+	if (stickySection === id) {
+		stickySection = "";
+	}
+
+	checkArrow();
 }
 
 function selectSection(id : string) : void {
@@ -89,7 +106,7 @@ function showSection(id : string) : void {
 	}, 1);
 
 	currentSection = id;
-
+	console.log(currentSection);
 	checkArrow();
 }
 
@@ -106,23 +123,16 @@ function showButton(id : string, delay : number, offset : number, onClick : () =
 			button.onmouseover = onMouse;
 		}
 	}, delay);
-
-	const section = Id.getSection(id);
-	if (section) {
-		section.onclick = () => {
-			if (smallScreen()) {
-				hideSection(id);
-			}
-		}
-	}
 }
 
 function checkArrow() : void {
 	let section = Id.getSection(currentSection)
 	let arrow = Id.getArrow();
+	let close = Id.getClose();
 
 	if (!section) {
 		arrow.style.display = "none";
+		close.style.display = "none";
 		return;
 	}
 
@@ -131,6 +141,7 @@ function checkArrow() : void {
 	} else {
 		arrow.style.display = "none";
 	}
+	close.style.display = "block";
 }
 
 function setDisplay(collection : HTMLCollectionOf<Element>, display : string) : void {
@@ -175,7 +186,22 @@ function start() : void {
 		}
 	}
 
-	showSection("welcome");
+	let close = Id.getClose();
+	close.onclick = () => {
+		hideSection(currentSection);
+	}
+
+	if (!smallScreen()) {
+		let welcome = Id.getSection("welcome");
+		showSection("welcome");
+	}
+
+	let info = Id.getInfo();
+	info.onclick = () => {
+		if (smallScreen()) {
+			hideSection(currentSection);
+		}
+	}
 }
 
 start();

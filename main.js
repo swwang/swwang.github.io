@@ -4,15 +4,15 @@
   \*********************/
 var Id;
 (function (Id) {
-    Id.rsvp = "rsvp";
-    Id.schedule = "schedule";
-    Id.story = "story";
-    Id.party = "party";
-    Id.gettingAround = "getting-around";
-    Id.forFun = "for-fun";
-    Id.faqs = "faqs";
-    Id.language = "language";
-    Id.sectionIds = [Id.rsvp, Id.schedule, Id.story, Id.party, Id.gettingAround, Id.forFun, Id.faqs, Id.language];
+    const rsvp = "rsvp";
+    const schedule = "schedule";
+    const story = "story";
+    const party = "party";
+    const gettingAround = "getting-around";
+    const forFun = "for-fun";
+    const faqs = "faqs";
+    const language = "language";
+    Id.sectionIds = [rsvp, schedule, story, party, gettingAround, forFun, faqs, language];
     function getSection(id) {
         return document.getElementById(id);
     }
@@ -21,11 +21,23 @@ var Id;
         return document.getElementById(id + "-button");
     }
     Id.getButton = getButton;
+    function getInfo() {
+        return document.getElementById("info");
+    }
+    Id.getInfo = getInfo;
     function getArrow() {
         return document.getElementById("arrow");
     }
     Id.getArrow = getArrow;
+    function getClose() {
+        return document.getElementById("close");
+    }
+    Id.getClose = getClose;
 })(Id || (Id = {}));
+var Recs;
+(function (Recs) {
+    const bayArea = [];
+})(Recs || (Recs = {}));
 function smallScreen() {
     return window.innerWidth < 1024;
 }
@@ -40,6 +52,13 @@ function hideSection(id) {
     section.style.opacity = "0";
     section.style.display = "none";
     document.getElementById("info").style.display = "none";
+    if (currentSection === id) {
+        currentSection = "";
+    }
+    if (stickySection === id) {
+        stickySection = "";
+    }
+    checkArrow();
 }
 function selectSection(id) {
     if (id === stickySection) {
@@ -71,6 +90,7 @@ function showSection(id) {
         section.style.opacity = smallScreen() ? "1" : "0.9";
     }, 1);
     currentSection = id;
+    console.log(currentSection);
     checkArrow();
 }
 function showButton(id, delay, offset, onClick, onMouse) {
@@ -83,20 +103,14 @@ function showButton(id, delay, offset, onClick, onMouse) {
             button.onmouseover = onMouse;
         }
     }, delay);
-    const section = Id.getSection(id);
-    if (section) {
-        section.onclick = () => {
-            if (smallScreen()) {
-                hideSection(id);
-            }
-        };
-    }
 }
 function checkArrow() {
     let section = Id.getSection(currentSection);
     let arrow = Id.getArrow();
+    let close = Id.getClose();
     if (!section) {
         arrow.style.display = "none";
+        close.style.display = "none";
         return;
     }
     if (hasOverflow(section)) {
@@ -105,6 +119,7 @@ function checkArrow() {
     else {
         arrow.style.display = "none";
     }
+    close.style.display = "block";
 }
 function setDisplay(collection, display) {
     for (let i = 0; i < collection.length; ++i) {
@@ -147,7 +162,20 @@ function start() {
             offset -= 5;
         }
     }
-    showSection("welcome");
+    let close = Id.getClose();
+    close.onclick = () => {
+        hideSection(currentSection);
+    };
+    if (!smallScreen()) {
+        let welcome = Id.getSection("welcome");
+        showSection("welcome");
+    }
+    let info = Id.getInfo();
+    info.onclick = () => {
+        if (smallScreen()) {
+            hideSection(currentSection);
+        }
+    };
 }
 start();
 

@@ -10,7 +10,7 @@
 
 html, body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 html {
@@ -84,7 +84,7 @@ img, #video {
 }
 
 #info, #menu {
-  position: fixed;
+  position: absolute;
   width: 50%;
   height: 100%;
   padding-top: 3em;
@@ -178,11 +178,9 @@ img, #video {
   font-family: "Lato";
   line-height: 0.7em;
 
-  position: absolute;
-  width: 60%;
-  max-height: 55%;
+  margin: 0 2em;
+  max-height: 60%;
   overflow-y: scroll;
-  left: 10%;
 
   display: none;
   opacity: 0;
@@ -229,9 +227,9 @@ img, #video {
 
 .section-img {
   border: 0.1em var(--defaultColor) solid;
-  box-shadow: 0 0 0.5em var(--defaultColor);
+  box-shadow: 0 0 0.1em var(--defaultColor);
 
-  width: 60%;
+  max-width: 60%;
   margin: 1em auto;
   margin-bottom: 0;
 }
@@ -299,11 +297,39 @@ img, #video {
   color: var(--backgroundLightColor);
 }
 
+#close {
+  font-family: "Lato";
+  font-size: 0.5em;
+
+  width: 1.5em;
+  height: 1.5em;
+
+  position: absolute;
+  top: 5.3em;
+  right: 3.3em;
+  z-index: 99;
+
+  user-select: none;
+
+  border-radius: 1em;
+  border: 0.3em solid var(--accentColor);
+  background-color: var(--backgroundColor);
+
+  display: none;
+
+  transition: box-shadow ease-in 0.5s;
+}
+
+#close:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0.1em var(--accentHoverColor);
+}
+
 #arrow {
   font-family: "Grandstander", sans-serif;
 
   position: absolute;
-  bottom: 3em;
+  bottom: 5em;
   width: 100%;
   text-align: center;
 
