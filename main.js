@@ -170,12 +170,6 @@ function start() {
         let welcome = Id.getSection("welcome");
         showSection("welcome");
     }
-    let info = Id.getInfo();
-    info.onclick = () => {
-        if (smallScreen()) {
-            hideSection(currentSection);
-        }
-    };
 }
 start();
 

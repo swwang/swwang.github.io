@@ -241,7 +241,7 @@ img, #video {
   margin-bottom: 1em;
 }
 
-.section-date {
+.section-box {
   font-family: "Grandstander", sans-serif;
 
   width: 60%;
@@ -311,6 +311,7 @@ img, #video {
 
   user-select: none;
 
+  box-shadow: 0 0 0.2em black;
   border-radius: 1em;
   border: 0.3em solid var(--accentColor);
   background-color: var(--backgroundColor);
