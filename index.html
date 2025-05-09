@@ -8,21 +8,368 @@
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Parisienne|Grandstander:100,300,500">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:regular,italic,bold,bolditalic" />
   </head>
 
   <body>
-    <div id="background" class="top-level">
-      <div id="blur" class="top-level"></div>
-      <div id="flex" class="top-level">
-        <div id="save" class="centered">
-          <div id="save-sb">sharon & brian</div>
-          <div id="save-date"><span class="material-symbols-outlined">calendar_today</span> 08.31.2025</div>
-          <div id="save-loc"><span class="material-symbols-outlined">location_on</span> <a id="link-loc" target="_blank" href="https://maps.app.goo.gl/U9JMLbtxDHajeWVu5">Ben Lomond, CA</a></div>
+    <div id="background" class="fill">
+      <div id="video-container" class="fill">
+        <video autoplay muted loop id="video">
+          <source src="forest.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div id="blur" class="fill"></div>
+      <div id="start"></div>
+      <div id="content" class="fill">
+        <div id="menu">
+          <div id="buttons">
+            <div id="rsvp-button" class="button">
+              <span class="en">RSVP</span>
+              <span class="zh">敬请回复</span>
+              <span class="material-symbols-outlined button-icon">add_reaction</span>
+            </div>
+            <div id="schedule-button" class="button">
+              <span class="en">Schedule</span>
+              <span class="zh">日程</span>
+              <span class="material-symbols-outlined button-icon">event</span>
+            </div>
+            <div id="story-button" class="button">
+              <span class="en">Our Story</span>
+              <span class="zh">我们的故事</span>
+              <span class="material-symbols-outlined button-icon">auto_stories</span>
+            </div>
+            <div id="party-button" class="button">
+              <span class="en">Wedding Party</span>
+              <span class="zh">婚礼的人</span>
+              <span class="material-symbols-outlined button-icon">diversity_3</span>
+            </div>
+            <div id="getting-around-button" class="button">
+              <span class="en">Travel</span>
+              <span class="zh">交通住宿</span>
+              <span class="material-symbols-outlined button-icon">airport_shuttle</span>
+            </div>
+            <div id="for-fun-button" class="button">
+              <span class="en">For Fun</span>
+              <span class="zh">推荐</span>
+              <span class="material-symbols-outlined button-icon">nightlife</span>
+            </div>
+            <div id="faqs-button" class="button">
+              <span class="en">FAQs</span>
+              <span class="zh">常问问题</span>
+              <span class="material-symbols-outlined button-icon">help</span>
+            </div>
+            <div id="language-button" class="button">
+              <span class="en">中文</span>
+              <span class="zh">English</span>
+            </div>
+          </div>
         </div>
-        <div id="form"><span class="material-symbols-outlined forest">forest</span> please fill out <a id="link-form" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScra_rfrt9fyzzaf7qisSELVZ-l5erwORNqYwijKZ-ILRrmlg/viewform">our form</a> and we'll send you a formal digital invite when it's ready! <span class="material-symbols-outlined forest">forest</span></div>
-        <div id="button" class="centered">save our date</div>
+
+        <div id="info">
+          <div id="welcome" class="section">
+              <span class="section-title"><span class="en">Welcome!</span><span class="zh">欢迎!</span></span>
+              <span class="section-p">
+                <span class="en">Welcome to Sharon &amp; Brian's wedding website!</span>
+                <span class="zh">欢迎来到 Sharon 和 Brian 的婚礼网站！</span>
+              </span>
+          </div>
+          <div id="rsvp" class="section">
+              <span class="section-title"><span class="en">RSVP</span><span class="zh">敬请回复</span></span>
+              <span class="section-p">
+                <span class="en">We are so excited to celebrate with you! Expect digital invites soon.</span>
+                <span class="zh">我们非常高兴能和你们一起庆祝！我们将很快通过电子邮件邀请你。</span>
+              </span>
+          </div>
+          <div id="schedule" class="section">
+              <span class="section-title">
+                <span class="en">Schedule</span>
+                <span class="zh">日程</span>
+              </span>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>label_important</span>
+                  <span class="en">Wedding!</span>
+                  <span class="zh">婚礼！</span>
+                </span>
+                <span class="section-p">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">Sunday August 31</span>
+                  <span class="zh">8月31日星期日</span>
+                </span>
+                <span class="section-p">
+                  <span class='material-symbols-outlined'>schedule</span>
+                  <span class="en">3:30pm to 10pm</span>
+                  <span class="zh">下午 3:30 至晚上 10 点</span>
+                </span>
+                <span class="section-p">
+                  <span class='material-symbols-outlined'>location_on</span>
+                  <a href="https://maps.app.goo.gl/6DzMs3hJYaffxVRY9" target="_blank">Sequoia Retreat Center</a>
+                </span>
+                <span class="section-p">
+                  <span class='material-symbols-outlined'>checkroom</span>
+                  <span class="en">Cocktail Attire</span>
+                  <span class="zh">鸡尾酒会服装</span>
+                </span>
+                <br>
+                <span class="section-p">
+                  <span class="en">Join us for a day filled with celebration, food, and dancing! The ceremony will begin promptly at 4pm.</span>
+                  <span class="zh"></span>
+                  <br><br>
+                  <span class="en">With the exception of dancing, the event will be held outdoors. We encourage you to bring layers or a light jacket as it can get chilly in the evening.</span>
+                  <span class="zh"></span>
+                </span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>label_important</span>
+                  <span class="en">Day After Brunch</span>
+                  <span class="zh">早午餐</span>
+                </span>
+                <span class="section-p">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">Monday September 1</span>
+                  <span class="zh">9月1日星期一</span>
+                </span>
+                <span class="section-p">
+                  <span class='material-symbols-outlined'>schedule</span>
+                  <span class="en">TBD</span>
+                  <span class="zh">待定</span>
+                </span>
+                <span class="section-p">
+                  <span class='material-symbols-outlined'>location_on</span>
+                  <span class="en">TBD</span>
+                  <span class="zh">待定</span>
+                </span>
+                <br>
+                <span class="section-p">
+                  <span class="en">Details coming soon</span>
+                  <span class="zh">待定</span>
+                </span>
+              </div>
+          </div>
+          <div id="story" class="section">
+              <span class="section-title">
+                <span class="en">Our Story</span>
+                <span class="zh">我们的故事</span>
+              </span>
+              <div class="section-date">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">December 4, 2016</span>
+                  <span class="zh">2016年12月4日</span>
+              </div>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>handshake</span>
+                  <span class="en">First Encounter</span>
+                  <span class="zh">初次相遇</span>
+                </span>
+                <span class="section-p">Sharon &amp; Brian meet for the very first time at Koja Kitchen. They hit it off immediately when Sharon buys Brian some Kamikaze Fries even though she forgot his name. Afterwards, they sit together on the roller coasters at Great America which gets their hearts racing - was it the other person or the rides?</span>
+                <div class="section-img">
+                  <img src="./img/greatamerica.jpg" alt="Great America">
+                </div>
+                <span class="section-caption">
+                  <span class="en">Great America 2018</span>
+                </span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-date">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">March 26, 2017</span>
+                  <span class="zh">2017年3月26日</span>
+              </div>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>smartphone</span>
+                  <span class="en">First Contact</span>
+                  <span class="zh">电话号码</span>
+                </span>
+                <span class="section-p">Sharon comes over to Brian’s place for a Sherlock viewing party. They download Allo, Google’s latest chat app and spend 2 hours sending stickers to each other after everyone else has left.</span>
+                <div class="section-img">
+                  <img src="./img/hmb.jpg" alt="Half Moon Bay">
+                </div>
+                <span class="section-caption">
+                  <span class="en">Half Moon Bay 2019</span>
+                </span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-date">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">June 24, 2017</span>
+                  <span class="zh">2017年6月24日</span>
+              </div>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>music_note</span>
+                  <span class="en">Into You</span>
+                  <span class="zh">小牛牛</span>
+                </span>
+                <span class="section-p">Sharon invites Brian to be her +1 at the ID10T music festival. At the end of the night, Brian drives Sharon home as she sings along to “Into You” by Arianna Grande. Brian is too nervous about his plans to ask Sharon out and misses the hint.</span>
+                <div class="section-img">
+                  <img src="./img/missionpeak.jpg" alt="Mission Peak">
+                </div>
+                <span class="section-caption">
+                  <span class="en">Mission Peak 2019</span>
+                </span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-date">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">June 28, 2017</span>
+                  <span class="zh">2017年6月28日</span>
+              </div>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>balance</span>
+                  <span class="en">Fair Trade</span>
+                  <span class="zh">交换</span>
+                </span>
+                <span class="section-p">Brian visits Sharon at her secret workplace and eats free sushi. In return, Brian invites Sharon to his apartment where she helps him pack all night for his move the very next day.</span>
+                <div class="section-img">
+                  <img src="./img/biking.jpg" alt="Biking">
+                </div>
+                <span class="section-caption">
+                  <span class="en">Biking 2021</span>
+                </span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-date">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">July 7, 2017</span>
+                  <span class="zh">2017年7月7日</span>
+              </div>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>favorite</span>
+                  <span class="en">First Date</span>
+                  <span class="zh">初次约会</span>
+                </span>
+                <span class="section-p">Brian takes Sharon out to Lotus Thai Bistro for their very first date. It is a great success.</span>
+                <div class="section-img">
+                  <img src="./img/mexico.jpg" alt="Mexico">
+                </div>
+                <span class="section-caption">
+                  <span class="en">Mexico 2022</span>
+                </span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-date">
+                  <span class='material-symbols-outlined'>event</span>
+                  <span class="en">Feb 18, 2024</span>
+                  <span class="zh">2024年2月18日</span>
+              </div>
+              <div class="section-block">
+                <span class="section-h">
+                  <span class='material-symbols-outlined'>extension</span>
+                  <span class="en">Engaged!</span>
+                  <span class="zh">我们订婚了!</span>
+                </span>
+                <span class="section-p">Brian proposes to Sharon after she completes a custom-made puzzle hunt.</span>
+                <div class="section-img">
+                  <img src="./img/engaged.jpg" alt="Engaged">
+                </div>
+                <span class="section-caption">
+                  <span class="en">Engaged 2024</span>
+                </span>
+              </div>
+          </div>
+          <div id="party" class="section">
+              <span class="section-title">
+                <span class="en">Wedding Party</span>
+                <span class="zh">婚礼的人</span>
+              </span>
+              <span class="section-p">Coming soon!</span>
+          </div>
+          <div id="getting-around" class="section">
+              <span class="section-title">
+                <span class="en">Travel</span>
+                <span class="zh">交通住宿</span>
+              </span>
+              <div class="section-block">
+                <span class="section-h"><span class='material-symbols-outlined'>travel</span> Flying In</span>
+                <span class="section-p">We highly recommend flying to SJC (San Jose) if possible. SFO (San Francisco) and OAK (Oakland) are also doable, but quite a bit further.</span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-block">
+                <span class="section-h"><span class='material-symbols-outlined'>airport_shuttle</span> Transportation</span>
+                <span class="section-p">We highly recommend renting a car while you're in the Bay Area. Public transportation is difficult to use near and around our venue in Santa Cruz. Highway 17 is the main route to Santa Cruz and can be hilly and windy.</span>
+              </div>
+              <div class="section-separator"></div>
+              <div class="section-block">
+                <span class="section-h"><span class='material-symbols-outlined'>hotel</span> Accomodation</span>
+                <span class="section-p">We recommend staying near the venue around Scotts Valley or Santa Cruz. The main route in and out of Santa Cruz (Highway 17) is windy and can be congested due to beach traffic. We have a room block at <a href="https://maps.app.goo.gl/UZUHHgLrqPQbGxXv8" target="_blank">Sheraton Four Points</a> with discounted rates--just make sure to mention our names when you reach out.</span>
+              </div>
+            </span>
+          </div>
+          <div id="for-fun" class="section">
+              <span class="section-title">
+                <span class="en">For Fun</span>
+                <span class="zh">推荐</span>
+              </span>
+              <div class="section-block">
+                <div id="rec-bay" class="section-button">
+                  <span class='material-symbols-outlined'>ifl</span>
+                  <span class="en">Bay Area Rec</span>
+                  <span class="zh">湾区推荐</span>
+                </div>
+                <div id="rec-sc" class="section-button">
+                  <span class='material-symbols-outlined'>casino</span>
+                  <span class="en">Santa Cruz Rec</span>
+                  <span class="zh">圣克鲁斯推荐</span>
+                </div>
+              </div>
+              <div id="rec-block">
+                <div class="section-block">
+                  <span class="section-h"><span class='material-symbols-outlined'>restaurant</span>
+                    <span class="en">Food</span>
+                    <span class="zh">餐厅</span>
+                  </span>
+                  <span class="section-p">
+                    <span id="rec-food-name">Under construction!</span>
+                    <span id="rec-food-desc"></span>
+                  </span>
+                </div>
+                <div class="section-block">
+                  <span class="section-h"><span class='material-symbols-outlined'>pin_drop</span>
+                    <span class="en">Sightseeing</span>
+                    <span class="zh">观光</span>
+                  </span>
+                  <span class="section-p">
+                    <span id="rec-sight-name">Under construction!</span>
+                    <span id="rec-sight-desc"></span>
+                  </span>
+                </div>
+              </div>
+          </div>
+          <div id="faqs" class="section">
+              <span class="section-title">
+                <span class="en">FAQs</span>
+                <span class="zh">常问问题</span>
+              </span>
+              <div class="section-qa">
+                <span class="section-h"><span class='material-symbols-outlined'>contact_support</span>What should I wear?</span>
+                <span class="section-p"><span class='material-symbols-outlined'>checkroom</span> Cocktail attire! We also recommend bringing layers or a light jacket as it can get chilly in the evening.</span>
+              </div>
+              <div class="section-qa">
+                <span class="section-h"><span class='material-symbols-outlined'>contact_support</span>Is there parking?</span>
+                <span class="section-p"><span class='material-symbols-outlined'>garage</span> There is limited parking (~35 spots) at the venue so we highly encourage carpooling. There is also <a href="https://maps.app.goo.gl/SG41QfSJGNX33mtV7" target="blank">overflow parking</a> at a nearby church.</span>
+              </div>
+              <div class="section-qa">
+                <span class="section-h"><span class='material-symbols-outlined'>contact_support</span>What should I pack?</span>
+                <span class="section-p"><span class='material-symbols-outlined'>apparel</span> California has beautiful weather with warm sunny days, but can be a bit chilly at night. We recommend bringing sunscreen for the day and layers or a light jacket for nights.</span>
+              </div>
+              <div class="section-qa">
+                <span class="section-h"><span class='material-symbols-outlined'>contact_support</span>I have a specific question!</span>
+                <span class="section-p"><span class='material-symbols-outlined'>email</span>No problem. Send us an email at sbteam33 AT gmail.com</span>
+              </div>
+          </div>
+          <div style="position: relative; height: 95%; z-index: -99">
+            <div id="arrow" class="arrow"><span class="material-symbols-outlined">arrow_drop_down</span>Scroll down</div>
+          </div>
+        </div>
       </div>
     </div>
-    <script src="save_the_date.js"></script>
   </body>
+
+  <script src="./main.js"></script>
 </html>

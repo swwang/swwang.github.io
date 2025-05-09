@@ -1,4 +1,13 @@
 
+:root {
+  --defaultColor: #FFFADC;
+  --backgroundColor: #a27e86;
+  --backgroundLightColor: #edc7d0;
+  --accentColor: #FFFADC;
+  --accentHoverColor: #7d6067;
+  --linkColor #ded6a4;
+}
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;
@@ -15,7 +24,17 @@ body {
   text-align: center;
 
   background-color: black;
-  color: rgba(255, 250, 220, 0.7);
+  color: var(--defaultColor);
+}
+
+a {
+  color: var(--linkColor);
+}
+
+img, #video {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: fill;
 }
 
 /* fallback */
@@ -41,9 +60,11 @@ body {
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+
+  padding-right: 0.5em;
 }
 
-.top-level {
+.fill {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -58,6 +79,239 @@ body {
   display: inline-block;
 }
 
+.zh {
+  display: none;
+}
+
+#info, #menu {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  padding-top: 3em;
+  margin: 0 auto;
+  font-size: 1.4em;
+}
+
+#info {
+  left: 50%;
+  display: none;
+}
+
+#menu {
+  left: 0%;
+  text-align: left;
+
+  font-family: "Grandstander", sans-serif;
+}
+
+@media screen and (max-width: 1024px) {
+  #menu, #info {
+    left: 0;
+    width: 100%;
+  }
+}
+
+#buttons {
+  margin: 0 auto;
+  max-width: 60%;
+}
+
+.button {
+  background-color: var(--accentColor);
+  opacity: 0.9;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  padding-top: 0.3em;
+  padding-bottom: 0.2em;
+  padding-left: 1.5em;
+  padding-right: 4em;
+
+  margin: 0.3em 0;
+
+  visibility: hidden;
+  position: relative;
+  left: -300%;
+
+  user-select: none;
+
+  transition: left 0.7s cubic-bezier(.66,1.41,.89,.97);
+}
+
+.button span {
+  position: relative;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  background-color: var(--backgroundColor);
+
+  width: 97%;
+  height: 100%;
+  left: 3%;
+  top: 0;
+}
+
+.button, .button::before {
+  clip-path: polygon(5% 0%, 95% 0%, 100% 33%, 95% 100%, 5% 100%, 0% 66%);
+}
+
+.button-icon {
+  color: var(--backgroundColor);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--accentHoverColor);
+  color: var(--accentHoverColor);
+
+  transition: color ease-in 0.1s, background-color ease-in 0.1s;
+}
+
+.button:hover::before {
+  background-color: var(--backgroundLightColor);
+  transition: color ease-in 0.1s, background-color ease-in 0.1s;
+}
+
+.section {
+  font-family: "Lato";
+  line-height: 0.7em;
+
+  position: absolute;
+  width: 60%;
+  max-height: 55%;
+  overflow-y: scroll;
+  left: 10%;
+
+  display: none;
+  opacity: 0;
+
+  transition: opacity ease-in 0.1s;
+
+  border: 0.3em solid var(--accentColor);
+  border-radius: 0.1em;
+  background-color: var(--backgroundColor);
+  padding: 1em 2em;
+
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.section::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.section-title {
+  font-family: "Grandstander", sans-serif;
+
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.section-p, .section-h {
+  display: block;
+  font-size: 0.6em;
+  text-align: left;
+}
+
+.section-h {
+  font-family: "Grandstander", sans-serif;
+  font-weight: bold;
+}
+
+.section-block {
+  font-size: 0.9em;
+  padding-bottom: 1em;
+}
+
+.section-img {
+  border: 0.1em var(--defaultColor) solid;
+  box-shadow: 0 0 0.5em var(--defaultColor);
+
+  width: 60%;
+  margin: 1em auto;
+  margin-bottom: 0;
+}
+
+.section-separator {
+  width: 40%;
+  border-bottom: 1px solid;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.section-date {
+  font-family: "Grandstander", sans-serif;
+
+  width: 60%;
+  border: 1px var(--defaultColor) solid;
+  background-color: var(--accentHoverColor);
+
+  font-size: 0.5em;
+  text-align: center;
+  padding: 0.5em 0;
+  margin: 1em auto;
+}
+
+.section-qa {
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+}
+
+.section-qa .section-p {
+  font-size: 0.5em;
+}
+
+.section-caption {
+  font-size: 0.4em;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.section-button {
+  font-family: "Grandstander", sans-serif;
+
+  font-size: 0.7em;
+  border: 0.1em solid;
+  display: inline-block;
+  padding: 0.3em 0.5em;
+  margin: 0.3em 0.1em;
+  border-radius: 0.2em;
+
+  background-color: var(--accentColor);
+  color: var(--backgroundColor);
+
+  user-select: none;
+
+  transition: color ease-in 0.1s, background-color ease-in 0.1s;
+}
+
+.section-button:hover {
+  cursor: pointer;
+
+  box-shadow: 0 0 0.1em var(--accentHoverColor);
+
+  background-color: var(--accentHoverColor);
+  color: var(--backgroundLightColor);
+}
+
+#arrow {
+  font-family: "Grandstander", sans-serif;
+
+  position: absolute;
+  bottom: 3em;
+  width: 100%;
+  text-align: center;
+
+  user-select: none;
+
+  animation: pulse 3s infinite;
+}
+
 #background {
   background: url("trees.jpg") no-repeat center center fixed;
   background-size: auto 125%;
@@ -65,6 +319,25 @@ body {
   transition: background-size ease-in 2.5s;
 }
 
+#blur {
+  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.2);
+
+  transition: background-color ease-in 2.5s, backdrop-filter ease-in 2.5s;
+}
+
+#video-container {
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0 }
+  30%, 70% { opacity: 1 }
+}
+
+
+/*
 #flex {
   display: flex;
   align-items: center;
@@ -87,13 +360,6 @@ body {
 #button:hover {
   background-color: rgba(110, 130, 75, 0.7);
   border-radius: 0.3em;
-}
-
-#blur {
-  backdrop-filter: blur(0px);
-  background-color: rgba(255, 255, 255, 0);
-
-  transition: background-color ease-in 2.5s, backdrop-filter ease-in 2.5s;
 }
 
 #save {
@@ -150,3 +416,4 @@ body {
 .forest {
   color: rgb(110, 130, 75);
 }
+*/
