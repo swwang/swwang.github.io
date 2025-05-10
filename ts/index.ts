@@ -195,6 +195,14 @@ function start() : void {
 		let welcome = Id.getSection("welcome");
 		showSection("welcome");
 	}
+
+	let ropes = document.getElementById("ropes");
+	let buttons = document.getElementById("buttons");
+	ropes.style.height = buttons.clientHeight + 25 + "px";
+
+	window.onresize = () => {
+		ropes.style.height = buttons.clientHeight + 25 + "px";
+	}
 }
 
 start();

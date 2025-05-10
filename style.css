@@ -1,11 +1,32 @@
 
 :root {
+  --defaultColor: #e6ddc4;
+  --backgroundColor: #945c68;
+  --backgroundLightColor: #842b3e;
+  --accentColor: #e6ddc4;
+  --accentHoverColor: #be8d97;
+  --woodColor: #6a472f; 
+  --woodAccentColor: #4d3022;
+  --woodHoverColor: #926c52;
+  --woodAccentHoverColor: #fff1e6;
+  --ropeColor: #d7be87;
+  --ropeBorderColor: #8a7445;
+  --linkColor: #d7be87;
+
+/*
   --defaultColor: #FFFADC;
-  --backgroundColor: #a27e86;
-  --backgroundLightColor: #edc7d0;
+  --backgroundColor: #578c66;
+  --backgroundLightColor: #b8e6c5;
   --accentColor: #FFFADC;
-  --accentHoverColor: #7d6067;
-  --linkColor #ded6a4;
+  --accentHoverColor: #52755c;
+  --woodColor: #774d30; 
+  --woodAccentColor: #453528;
+  --woodHoverColor: #dba681;
+  --woodAccentHoverColor: #fff1e6;
+  --ropeColor: #d7be87;
+  --ropeBorderColor: #b8a274;
+  --linkColor: #ded6a4;
+*/
 }
 
 html, body {
@@ -87,7 +108,6 @@ img, #video {
   position: absolute;
   width: 50%;
   height: 100%;
-  padding-top: 3em;
   margin: 0 auto;
   font-size: 1.4em;
 }
@@ -111,14 +131,45 @@ img, #video {
   }
 }
 
-#buttons {
+#menu-container {
   margin: 0 auto;
   max-width: 60%;
 }
 
+.rope {
+  position: absolute;
+  height: 100%;
+
+  background-color: var(--ropeColor);
+  width: 0.5em;
+  border: 0.1em solid var(--ropeBorderColor);
+  box-shadow: 0 0 0.2em black;
+}
+
+#ropes {
+  width: 100%;
+  position: absolute;
+  top: -0.5em;
+
+  height: 0px;
+  transition: height 1s linear;
+}
+
+#rope-1 {
+  left: 20%;
+}
+
+#rope-2 {
+  right: 50%;
+}
+
+#buttons {
+  padding-top: 3em;
+}
+
 .button {
-  background-color: var(--accentColor);
-  opacity: 0.9;
+  background-color: var(--woodAccentColor);
+  opacity: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
 
@@ -145,12 +196,13 @@ img, #video {
 .button::before {
   content: "";
   position: absolute;
-  background-color: var(--backgroundColor);
+  background-color: var(--woodColor);
 
   width: 97%;
   height: 100%;
   left: 3%;
   top: 0;
+
 }
 
 .button, .button::before {
@@ -158,28 +210,47 @@ img, #video {
 }
 
 .button-icon {
-  color: var(--backgroundColor);
+  color: var(--woodColor);
 }
 
 .button:hover {
   cursor: pointer;
-  background-color: var(--accentHoverColor);
-  color: var(--accentHoverColor);
+  background-color: var(--woodAccentHoverColor);
+  color: var(--woodAccentHoverColor);
 
   transition: color ease-in 0.1s, background-color ease-in 0.1s;
 }
 
 .button:hover::before {
-  background-color: var(--backgroundLightColor);
+  background-color: var(--woodHoverColor);
   transition: color ease-in 0.1s, background-color ease-in 0.1s;
 }
 
+#sign {
+  width: 88%;
+  height: 60%;
+  margin: 0 auto;
+  margin-top: 1.5em;
+  padding-top: 1.5em;
+  scrollbar-width: none;
+
+  /*
+  background-color: #a45a52;
+  background-image: url("./img/wood.png");
+
+  border-radius: 1em;
+  box-shadow: 0 0 0.5em black;
+  */
+}
+
 .section {
+  position: relative;
   font-family: "Lato";
   line-height: 0.7em;
 
-  margin: 0 2em;
-  max-height: 60%;
+  margin: 0;
+  margin-bottom: 1em;
+  max-height: 100%;
   overflow-y: scroll;
 
   display: none;
@@ -202,9 +273,12 @@ img, #video {
 
 .section-title {
   font-family: "Grandstander", sans-serif;
+  width: 100%;
+  display: inline-block;
+
+  font-size: 1.2em;
 
   font-weight: bold;
-  display: block;
   text-align: center;
   margin-bottom: 1em;
 }
@@ -305,8 +379,8 @@ img, #video {
   height: 1.5em;
 
   position: absolute;
-  top: 5.3em;
-  right: 3.3em;
+  top: 5.4em;
+  left: 2.4em;
   z-index: 99;
 
   user-select: none;
@@ -330,7 +404,7 @@ img, #video {
   font-family: "Grandstander", sans-serif;
 
   position: absolute;
-  bottom: 5em;
+  bottom: 2em;
   width: 100%;
   text-align: center;
 
