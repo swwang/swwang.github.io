@@ -111,6 +111,8 @@ img, #video {
   height: 100%;
   margin: 0 auto;
   font-size: 1.4em;
+
+  overflow: hidden;
 }
 
 #info {
@@ -127,7 +129,7 @@ img, #video {
 
 @media screen and (max-width: 1024px) {
   body {
-    font-size: 1.2em;
+    font-size: 3.5vmin;
   }
   #menu, #info {
     left: 0;
@@ -411,7 +413,7 @@ img, #video {
   font-family: "Grandstander", sans-serif;
 
   position: absolute;
-  bottom: 2em;
+  bottom: 1.5em;
   width: 100%;
   text-align: center;
 
@@ -423,6 +425,7 @@ img, #video {
 #background {
   background: url("trees.jpg") no-repeat center center fixed;
   background-size: auto 125%;
+  overflow: hidden;
 
   transition: background-size ease-in 2.5s;
 }
@@ -430,6 +433,7 @@ img, #video {
 #blur {
   backdrop-filter: blur(3px);
   background-color: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 
   transition: background-color ease-in 2.5s, backdrop-filter ease-in 2.5s;
 }
