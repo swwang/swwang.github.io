@@ -478,6 +478,8 @@ function start() : void {
 		sightDesc.textContent = recs[1].desc;
 
 		recBlock.style.display = "block";
+		recBlock.scrollIntoView({ behavior: "smooth" });
+		
 		checkArrow();
 	};
 
@@ -493,6 +495,8 @@ function start() : void {
 		sightDesc.textContent = recs[1].desc;
 
 		recBlock.style.display = "block";
+		recBlock.scrollIntoView({ behavior: "smooth" });
+
 		checkArrow();
 	};
 }

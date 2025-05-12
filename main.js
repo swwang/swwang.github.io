@@ -434,6 +434,7 @@ function start() {
         sightLoc.textContent = recs[1].loc;
         sightDesc.textContent = recs[1].desc;
         recBlock.style.display = "block";
+        recBlock.scrollIntoView({ behavior: "smooth" });
         checkArrow();
     };
     let recSantaCruz = document.getElementById("rec-sc");
@@ -446,6 +447,7 @@ function start() {
         sightLoc.textContent = recs[1].loc;
         sightDesc.textContent = recs[1].desc;
         recBlock.style.display = "block";
+        recBlock.scrollIntoView({ behavior: "smooth" });
         checkArrow();
     };
 }
