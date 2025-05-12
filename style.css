@@ -236,7 +236,7 @@ img, #video {
 }
 
 #sign {
-  width: 88%;
+  width: 80%;
   height: 60%;
   margin: 0 auto;
   margin-top: 1.5em;
@@ -299,6 +299,7 @@ img, #video {
 }
 
 .section-h {
+  font-size: 0.7em;
   font-family: "Grandstander", sans-serif;
   font-weight: bold;
 }
@@ -380,6 +381,10 @@ img, #video {
   color: var(--backgroundLightColor);
 }
 
+#rec-block {
+  display: none;
+}
+
 #close {
   font-family: "Lato";
   font-size: 0.5em;
@@ -389,7 +394,7 @@ img, #video {
 
   position: absolute;
   top: 5.5em;
-  left: 5%;
+  left: 9%;
   z-index: 99;
 
   user-select: none;
