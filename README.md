@@ -1,3 +1,3 @@
 #sbteam's wedding website
 
-![Website screenshot](https://github.com/swwang/swwang.github.io/blob/master/screenshots/devlog01.png?raw=true)
+![Website screenshot](https://raw.githubusercontent.com/swwang/swwang.github.io/refs/heads/main/screenshots/devlog01.png)
