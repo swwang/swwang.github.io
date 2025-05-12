@@ -32,6 +32,125 @@ namespace Id {
 	}
 }
 
+type Bio = {
+	name: string;
+	title: string;
+	desc: string;
+	trivia: string[];
+}
+namespace Bios {
+	const bios = new Map<string, Bio>([
+		["sharon", {
+			name: "Sharon",
+			title: "The Bride",
+			desc: "The bride to be.",
+			trivia: [],
+		}],
+		["brian", {
+			name: "Brian",
+			title: "The Groom",
+			desc: "The groom to be. Loves Mexican food, but not as much as he loves Sharon.",
+			trivia: ["Can finish a burrito of any size", "Seems chill, but is an absolute tryhard"],
+		}],
+		["sharie", {
+			name: "Sharie",
+			title: "The Maid of Honor",
+			desc: "",
+			trivia: ["Has an epic frown"],
+		}],
+		["john", {
+			name: "John",
+			title: "The Best Man",
+			desc: "<div class='section-img'><img src='./img/muffin.png' alt='muffin'></div>",
+			trivia: ["Loves poetry (The Charge of the Light Brigade)", "Loves books (The Poisonwood Bible)", "Way too much energy (literal screaming)"],
+		}],
+		["allen", {
+			name: "Allen",
+			title: "Literally Dragaux",
+			desc: "The older brother of the groom. Has a penchant for suffering (running marathons, taking red-eye flights, attending medical school).",
+			trivia: ["Does pushups for fun", "Once lost 20 times in a row in Smash Bros., refused to give up, and won the 21st match"],
+		}],
+		["derek", {
+			name: "Derek",
+			title: "Mr. Whee",
+			desc: "The younger brother of the groom. Secretly a very disrespectful gamer, don't play him in Smash Bros if you value your dignity.",
+			trivia: ["Can play the trombone (on the computer)", "#1 ranked Birdtown player worldwide"],
+		}],
+		["amy", {
+			name: "Amy",
+			title: "Amy Wamy",
+			desc: "",
+			trivia: [],
+		}],
+		["clarence", {
+			name: "Clarence",
+			title: "Clubbo",
+			desc: "The college roommate of the groom. Lowkey the coolest guy at WashU.",
+			trivia: ["Ask him about Pizza Fridays", "Watch out for his pocket pick Fiddlesticks"],
+		}],
+		["amarise", {
+			name: "Amarise",
+			title: "Amarise",
+			desc: "",
+			trivia: [],
+		}],
+		["paul", {
+			name: "Paul",
+			title: "Cronster",
+			desc: "College friend of the groom. ",
+			trivia: ["Thai food fiend (orders #42 with Thai Iced Tea at Thai Country Cafe)", "Makes the best postcards ever"],
+		}],
+		["harinee", {
+			name: "Harinee",
+			title: "Harinee",
+			desc: "",
+			trivia: [],
+		}],
+		["wei", {
+			name: "Wei",
+			title: "The Prophet",
+			desc: "Our esteemed wedding officiant. A man of mystery, Wei alternates between 1v9 carrying his team in Mafia and literally being confused out of his mind next game.",
+			trivia: ["Grills a mean burger", "Avant-garde Halloween costume brainstormer", "Has beaten Broforce (co-op mode only)"],
+		}],
+	]);
+
+	export function setup() : void {
+		let box = document.getElementById("character-name-box");
+		let name = document.getElementById("character-name");
+		let title = document.getElementById("character-title");
+		let desc = document.getElementById("character-desc");
+		let trivia = document.getElementById("character-trivia");
+		let triviaBlock = document.getElementById("character-trivia-block");
+
+		bios.forEach((bio : Bio, id : string) => {
+			let select = document.getElementById("character-" + id);
+			let info = document.getElementById("character-info");
+
+			select.onclick = () => {
+				mapElements(document.getElementsByClassName("character"), (elm : HTMLElement) => {
+					elm.classList.remove("character-selected");
+				});
+
+				info.style.display = "block";
+
+				select.classList.add("character-selected");
+				name.textContent = bio.name;
+				title.textContent = bio.title;
+				desc.innerHTML = bio.desc;
+
+				if (bio.trivia.length > 0) {
+					trivia.innerHTML = `<li>${bio.trivia.join("</li><li>")}</li>`;
+					triviaBlock.style.display = "block";
+				} else {
+					triviaBlock.style.display = "none";
+				}
+
+				checkArrow();
+				info.scrollIntoView({ behavior: "smooth" });
+			};
+		});
+	}
+}
 
 type Rec = {
 	name: string;
@@ -272,10 +391,15 @@ function checkArrow() : void {
 	close.style.display = "block";
 }
 
-function setDisplay(collection : HTMLCollectionOf<Element>, display : string) : void {
+function mapElements(collection : HTMLCollectionOf<Element>, cb : (elm : HTMLElement) => void) : void {
 	for (let i = 0; i < collection.length; ++i) {
-		(<HTMLElement>collection[i]).style.display = display;
+		cb(<HTMLElement>collection[i]);
 	}
+}
+function setDisplay(collection : HTMLCollectionOf<Element>, display : string) : void {
+	mapElements(collection, (elm : HTMLElement) => {
+		elm.style.display = display;
+	});
 }
 function toggleLanguage() : void {
 	if (english) {
@@ -332,6 +456,8 @@ function start() : void {
 		ropes.style.height = buttons.clientHeight + 25 + "px";
 	}
 
+	Bios.setup();
+
 	let recBlock = document.getElementById("rec-block");
 	let foodName = document.getElementById("rec-food-name");
 	let foodLoc = document.getElementById("rec-food-loc");
@@ -352,6 +478,7 @@ function start() : void {
 		sightDesc.textContent = recs[1].desc;
 
 		recBlock.style.display = "block";
+		checkArrow();
 	};
 
 	let recSantaCruz = document.getElementById("rec-sc");
@@ -366,6 +493,7 @@ function start() : void {
 		sightDesc.textContent = recs[1].desc;
 
 		recBlock.style.display = "block";
+		checkArrow();
 	};
 }
 

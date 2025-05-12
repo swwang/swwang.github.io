@@ -2,7 +2,7 @@
 :root {
   --defaultColor: #e6ddc4;
   --backgroundColor: #945c68;
-  --backgroundLightColor: #842b3e;
+  --backgroundDarkColor: #842b3e;
   --accentColor: #e6ddc4;
   --accentHoverColor: #be8d97;
   --woodColor: #6a472f; 
@@ -16,7 +16,7 @@
 /*
   --defaultColor: #FFFADC;
   --backgroundColor: #578c66;
-  --backgroundLightColor: #b8e6c5;
+  --backgroundDarkColor: #b8e6c5;
   --accentColor: #FFFADC;
   --accentHoverColor: #52755c;
   --woodColor: #774d30; 
@@ -285,11 +285,12 @@ img, #video {
   width: 100%;
   display: inline-block;
 
+  line-height: 1.1em;
   font-size: 1.2em;
 
   font-weight: bold;
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .section-p, .section-h {
@@ -310,12 +311,14 @@ img, #video {
 }
 
 .section-img {
-  border: 0.1em var(--defaultColor) solid;
-  box-shadow: 0 0 0.1em var(--defaultColor);
-
-  max-width: 60%;
+  max-width: 70%;
   margin: 1em auto;
   margin-bottom: 0;
+}
+
+.section-img img {
+  border: 0.1em var(--defaultColor) solid;
+  box-shadow: 0 0 0.1em var(--defaultColor);
 }
 
 .section-separator {
@@ -332,7 +335,7 @@ img, #video {
   border: 1px var(--defaultColor) solid;
   background-color: var(--accentHoverColor);
 
-  font-size: 0.5em;
+  font-size: 0.6em;
   text-align: center;
   padding: 0.5em 0;
   margin: 1em auto;
@@ -378,7 +381,41 @@ img, #video {
   box-shadow: 0 0 0.1em var(--accentHoverColor);
 
   background-color: var(--accentHoverColor);
-  color: var(--backgroundLightColor);
+  color: var(--backgroundDarkColor);
+}
+
+#characters {
+  padding: 0.5em 1em;
+}
+
+#character-info {
+  display: none;
+}
+
+.character {
+  display: inline-block;
+  width: 2.5em;
+  height: 2.5em;
+  margin-bottom: 0.25em;
+
+  filter: grayscale(1);
+
+  border: 0.1em solid var(--defaultColor);
+
+  transition: filter 0.2s linear, box-shadow 0.2s linear;
+}
+
+.character:hover, .character-selected {
+  filter: grayscale(0);
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 0 0.3em var(--accentHoverColor);
+}
+
+.character img {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
 }
 
 #rec-block {
@@ -405,13 +442,12 @@ img, #video {
   background-color: var(--backgroundColor);
 
   display: none;
-
-  transition: box-shadow ease-in 0.5s;
 }
 
 #close:hover {
+  background-color: var(--backgroundDarkColor);
+
   cursor: pointer;
-  box-shadow: 0 0 0.1em var(--accentHoverColor);
 }
 
 #arrow {
