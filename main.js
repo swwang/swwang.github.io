@@ -40,8 +40,8 @@ var Bios;
         ["sharon", {
                 name: "Sharon",
                 title: "The Bride",
-                desc: "The bride to be.",
-                trivia: [],
+                desc: "The bride to be. Has an infectious lovable personality.",
+                trivia: ["Loves gardening and cares for dozens of plants", "Loves her family of stuffed animals"],
             }],
         ["brian", {
                 name: "Brian",
@@ -52,14 +52,14 @@ var Bios;
         ["sharie", {
                 name: "Sharie",
                 title: "The Maid of Honor",
-                desc: "",
-                trivia: ["Has an epic frown"],
+                desc: "The younger sister of the bride. In a committed palieship since childhood.",
+                trivia: ["Has an epic frown", "Spends weekends playing with clay", "Always on the hunt for the best pastries"],
             }],
         ["john", {
                 name: "John",
                 title: "The Best Man",
                 desc: "<div class='section-img'><img src='./img/muffin.png' alt='muffin'></div>",
-                trivia: ["Loves poetry (The Charge of the Light Brigade)", "Loves books (The Poisonwood Bible)", "Way too much energy (literal screaming)"],
+                trivia: ["Loves poetry (The Charge of the Light Brigade)", "Loves books (The Poisonwood Bible)", "Way too much energy (a screamer)"],
             }],
         ["allen", {
                 name: "Allen",
@@ -76,8 +76,8 @@ var Bios;
         ["amy", {
                 name: "Amy",
                 title: "Amy Wamy",
-                desc: "",
-                trivia: [],
+                desc: "The college roommate of the bride. Has the biggest heart and sweet tooth.",
+                trivia: ["Celebrates her birthday at The Cheesecake Factory every year", "Once ordered boba milk tea with extra extra boba, no milk tea"],
             }],
         ["clarence", {
                 name: "Clarence",
@@ -88,20 +88,20 @@ var Bios;
         ["amarise", {
                 name: "Amarise",
                 title: "Amarise",
-                desc: "",
-                trivia: [],
+                desc: "College friend of the bride. Pro DIYer and plant mom.",
+                trivia: ["Allergic to coconut", "Frequently falls asleep before the fun starts"],
             }],
         ["paul", {
                 name: "Paul",
                 title: "Cronster",
-                desc: "College friend of the groom. ",
+                desc: "College friend of the groom. Crafts fantastic art and legitimately funny dad jokes",
                 trivia: ["Thai food fiend (orders #42 with Thai Iced Tea at Thai Country Cafe)", "Makes the best postcards ever"],
             }],
         ["harinee", {
                 name: "Harinee",
-                title: "Harinee",
-                desc: "",
-                trivia: [],
+                title: "Hayhoarder",
+                desc: "College friend of the bride. Embodies work hard, play hard",
+                trivia: ["Held many committee positions while graduating early", "Loves helping people"],
             }],
         ["wei", {
                 name: "Wei",
@@ -136,6 +136,7 @@ var Bios;
                 else {
                     triviaBlock.style.display = "none";
                 }
+                name.scrollIntoView({ behavior: "smooth" });
                 checkArrow();
             };
         });
