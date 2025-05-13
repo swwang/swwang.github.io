@@ -43,14 +43,14 @@ namespace Bios {
 		["sharon", {
 			name: "Sharon",
 			title: "The Bride",
-			desc: "The bride to be. Has an infectious lovable personality.",
-			trivia: ["Loves gardening and cares for dozens of plants", "Loves her family of stuffed animals"],
+			desc: "The bride to be. Tries to live as sustainably as possible",
+			trivia: ["Loses track of time gardening", "Big Tetris player", "Enjoys spending time with her stuffed animals"],
 		}],
 		["brian", {
 			name: "Brian",
 			title: "The Groom",
 			desc: "The groom to be. Loves Mexican food, but not as much as he loves Sharon.",
-			trivia: ["Can finish a burrito of any size", "Seems chill, but is an absolute tryhard"],
+			trivia: ["Can finish a burrito of any size", "Remembers everyone's birthdays", "Seems chill, but is an absolute tryhard"],
 		}],
 		["sharie", {
 			name: "Sharie",
@@ -90,7 +90,7 @@ namespace Bios {
 		}],
 		["amarise", {
 			name: "Amarise",
-			title: "Amarise",
+			title: "Ammy",
 			desc: "College friend of the bride. Pro DIYer and plant mom.",
 			trivia: ["Allergic to coconut", "Frequently falls asleep before the fun starts"],
 		}],
@@ -104,12 +104,12 @@ namespace Bios {
 			name: "Harinee",
 			title: "Hayhoarder",
 			desc: "College friend of the bride. Embodies work hard, play hard",
-			trivia: ["Held many committee positions while graduating early", "Loves helping people"],
+			trivia: ["Has an infectious laugh", "Loves kids", "Will take all the hay in Catan"],
 		}],
 		["wei", {
 			name: "Wei",
 			title: "The Prophet",
-			desc: "Our esteemed wedding officiant. A man of mystery, Wei alternates between 1v9 carrying his team in Mafia and literally being confused out of his mind next game.",
+			desc: "The esteemed wedding officiant. A man of mystery, Wei alternates between 1v9 carrying his team in Mafia and literally being confused out of his mind next game.",
 			trivia: ["Grills a mean burger", "Avant-garde Halloween costume brainstormer", "Has beaten Broforce (co-op mode only)"],
 		}],
 	]);
