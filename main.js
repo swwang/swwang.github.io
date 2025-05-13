@@ -137,7 +137,6 @@ var Bios;
                     triviaBlock.style.display = "none";
                 }
                 checkArrow();
-                info.scrollIntoView({ behavior: "smooth" });
             };
         });
     }
@@ -369,11 +368,11 @@ function setDisplay(collection, display) {
 function toggleLanguage() {
     if (english) {
         setDisplay(document.getElementsByClassName("en"), "none");
-        setDisplay(document.getElementsByClassName("zh"), "inline-block");
+        setDisplay(document.getElementsByClassName("zh"), "inline");
     }
     else {
         setDisplay(document.getElementsByClassName("zh"), "none");
-        setDisplay(document.getElementsByClassName("en"), "inline-block");
+        setDisplay(document.getElementsByClassName("en"), "inline");
     }
     checkArrow();
     english = !english;

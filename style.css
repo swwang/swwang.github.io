@@ -83,7 +83,7 @@ img, #video {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 
-  padding-right: 0.5em;
+  padding-right: 10px;
 }
 
 .fill {

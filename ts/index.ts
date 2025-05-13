@@ -146,7 +146,6 @@ namespace Bios {
 				}
 
 				checkArrow();
-				info.scrollIntoView({ behavior: "smooth" });
 			};
 		});
 	}
@@ -404,10 +403,10 @@ function setDisplay(collection : HTMLCollectionOf<Element>, display : string) : 
 function toggleLanguage() : void {
 	if (english) {
 		setDisplay(document.getElementsByClassName("en"), "none");
-		setDisplay(document.getElementsByClassName("zh"), "inline-block");
+		setDisplay(document.getElementsByClassName("zh"), "inline");
 	} else {
 		setDisplay(document.getElementsByClassName("zh"), "none");
-		setDisplay(document.getElementsByClassName("en"), "inline-block");
+		setDisplay(document.getElementsByClassName("en"), "inline");
 	}
 
 	checkArrow();
@@ -479,7 +478,7 @@ function start() : void {
 
 		recBlock.style.display = "block";
 		recBlock.scrollIntoView({ behavior: "smooth" });
-		
+
 		checkArrow();
 	};
 
