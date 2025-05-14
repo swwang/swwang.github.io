@@ -40,7 +40,7 @@ var Bios;
         ["sharon", {
                 name: "Sharon",
                 title: "The Bride",
-                desc: "The bride to be. Tries to live as sustainably as possible",
+                desc: "The bride to be. Tries to live as sustainably as possible.",
                 trivia: ["Loses track of time gardening", "Big Tetris player", "Enjoys spending time with her stuffed animals"],
             }],
         ["brian", {
@@ -94,13 +94,13 @@ var Bios;
         ["paul", {
                 name: "Paul",
                 title: "Cronster",
-                desc: "College friend of the groom. Crafts fantastic art and legitimately funny dad jokes",
+                desc: "College friend of the groom. Crafts fantastic art and legitimately funny dad jokes.",
                 trivia: ["Thai food fiend (orders #42 with Thai Iced Tea at Thai Country Cafe)", "Makes the best postcards ever"],
             }],
         ["harinee", {
                 name: "Harinee",
                 title: "Hayhoarder",
-                desc: "College friend of the bride. Embodies work hard, play hard",
+                desc: "College friend of the bride. Embodies work hard, play hard.",
                 trivia: ["Has an infectious laugh", "Loves kids", "Will take all the hay in Catan"],
             }],
         ["wei", {
@@ -282,6 +282,7 @@ function hasOverflow(elm) {
 let currentSection = "";
 let stickySection = "";
 let english = true;
+let music = false;
 function hideSection(id) {
     let section = Id.getSection(id);
     section.style.opacity = "0";
@@ -449,6 +450,23 @@ function start() {
         recBlock.style.display = "block";
         recBlock.scrollIntoView({ behavior: "smooth" });
         checkArrow();
+    };
+    const audioElement = new Audio("./bgm.mp3");
+    let musicButton = document.getElementById("music-button");
+    let musicText = document.getElementById("music-text");
+    let musicIcon = document.getElementById("music-icon");
+    musicButton.onclick = () => {
+        if (music) {
+            musicText.textContent = "Off";
+            musicIcon.textContent = "music_off";
+            audioElement.pause();
+        }
+        else {
+            musicText.textContent = "On";
+            musicIcon.textContent = "music_note";
+            audioElement.play();
+        }
+        music = !music;
     };
 }
 start();

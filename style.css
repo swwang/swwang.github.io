@@ -358,9 +358,12 @@ img, #video {
 }
 
 .section-button {
+  font-size: 0.7em;
+}
+
+.section-button, #music-button {
   font-family: "Grandstander", sans-serif;
 
-  font-size: 0.7em;
   border: 0.1em solid;
   display: inline-block;
   padding: 0.3em 0.5em;
@@ -375,7 +378,7 @@ img, #video {
   transition: color ease-in 0.1s, background-color ease-in 0.1s;
 }
 
-.section-button:hover {
+.section-button:hover, #music-button:hover {
   cursor: pointer;
 
   box-shadow: 0 0 0.1em var(--accentHoverColor);
@@ -448,6 +451,13 @@ img, #video {
   background-color: var(--backgroundDarkColor);
 
   cursor: pointer;
+}
+
+#music-button {
+  font-size: 0.9em;
+  position: fixed;
+  bottom: 1em;
+  margin: 0 auto;
 }
 
 #arrow {
