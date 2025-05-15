@@ -451,7 +451,8 @@ function start() {
         recBlock.scrollIntoView({ behavior: "smooth" });
         checkArrow();
     };
-    const audioElement = new Audio("./bgm.mp3");
+    let bgm = new Audio("./bgm.mp3");
+    bgm.loop = true;
     let musicButton = document.getElementById("music-button");
     let musicText = document.getElementById("music-text");
     let musicIcon = document.getElementById("music-icon");
@@ -459,12 +460,12 @@ function start() {
         if (music) {
             musicText.textContent = "Off";
             musicIcon.textContent = "music_off";
-            audioElement.pause();
+            bgm.pause();
         }
         else {
             musicText.textContent = "On";
             musicIcon.textContent = "music_note";
-            audioElement.play();
+            bgm.play();
         }
         music = !music;
     };
