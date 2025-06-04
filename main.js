@@ -17,6 +17,7 @@ var Permission;
     Permission[Permission["DEV"] = 1] = "DEV";
     Permission[Permission["FRIEND"] = 2] = "FRIEND";
     Permission[Permission["GROOMSMEN"] = 3] = "GROOMSMEN";
+    Permission[Permission["BRIDESMAID"] = 4] = "BRIDESMAID";
 })(Permission || (Permission = {}));
 var Form;
 (function (Form) {
@@ -111,7 +112,7 @@ var Form;
             }],
         ["palie", {
                 people: ["Sharie"],
-                permissions: [Permission.FRIEND],
+                permissions: [Permission.FRIEND, Permission.BRIDESMAID],
             }],
         ["jin", {
                 people: ["Lei", "Kerry", "Raymond", "Lucas"],
@@ -155,15 +156,15 @@ var Form;
             }],
         ["cheesecake", {
                 people: ["Amy", "John"],
-                permissions: [Permission.FRIEND],
+                permissions: [Permission.FRIEND, Permission.BRIDESMAID],
             }],
         ["volleyball", {
                 people: ["Amarise", "Niels"],
-                permissions: [Permission.FRIEND],
+                permissions: [Permission.FRIEND, Permission.BRIDESMAID],
             }],
         ["creampan", {
                 people: ["Harinee", "Shehan"],
-                permissions: [Permission.FRIEND],
+                permissions: [Permission.FRIEND, Permission.BRIDESMAID],
             }],
         ["poris", {
                 people: ["Daniel", "Margaret"],
@@ -254,6 +255,14 @@ var Form;
         return hasPermission(Permission.GROOMSMEN);
     }
     Form.isGroomsmen = isGroomsmen;
+    function isBridesmaid() {
+        return hasPermission(Permission.BRIDESMAID);
+    }
+    Form.isBridesmaid = isBridesmaid;
+    function isWeddingParty() {
+        return isGroomsmen() || isBridesmaid();
+    }
+    Form.isWeddingParty = isWeddingParty;
     function hasPermission(permission) {
         if (!entries.has(password)) {
             return false;
@@ -697,7 +706,7 @@ function start() {
     });
     if (form_1.Form.isDev()) {
         mapElements(document.getElementsByClassName("dev"), (elm) => {
-            elm.style.display = "block";
+            elm.style.display = "";
         });
         let emails = document.getElementById("email-links");
         let list = form_1.Form.createEmailLinks();
@@ -705,12 +714,22 @@ function start() {
     }
     if (form_1.Form.isFriend()) {
         mapElements(document.getElementsByClassName("friend"), (elm) => {
-            elm.style.display = "inline-block";
+            elm.style.display = "revert";
         });
     }
     if (form_1.Form.isGroomsmen()) {
         mapElements(document.getElementsByClassName("groomsmen"), (elm) => {
-            elm.style.display = "inline-block";
+            elm.style.display = "revert";
+        });
+    }
+    if (form_1.Form.isBridesmaid()) {
+        mapElements(document.getElementsByClassName("bridesmaid"), (elm) => {
+            elm.style.display = "revert";
+        });
+    }
+    if (form_1.Form.isWeddingParty()) {
+        mapElements(document.getElementsByClassName("wedding-party"), (elm) => {
+            elm.style.display = "revert";
         });
     }
     let delay = 0;

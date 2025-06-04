@@ -432,7 +432,7 @@ function start() : void {
 
 	if (Form.isDev()) {
 		mapElements(document.getElementsByClassName("dev"), (elm: HTMLElement) => {
-			elm.style.display = "block";
+			elm.style.display = "";
 		});
 
 		let emails = document.getElementById("email-links");
@@ -441,12 +441,22 @@ function start() : void {
 	}
 	if (Form.isFriend()) {
 		mapElements(document.getElementsByClassName("friend"), (elm: HTMLElement) => {
-			elm.style.display = "inline-block";
+			elm.style.display = "revert";
 		});
 	}
 	if (Form.isGroomsmen()) {
 		mapElements(document.getElementsByClassName("groomsmen"), (elm: HTMLElement) => {
-			elm.style.display = "inline-block";
+			elm.style.display = "revert";
+		});
+	}
+	if (Form.isBridesmaid()) {
+		mapElements(document.getElementsByClassName("bridesmaid"), (elm: HTMLElement) => {
+			elm.style.display = "revert";
+		});
+	}
+	if (Form.isWeddingParty()) {
+		mapElements(document.getElementsByClassName("wedding-party"), (elm: HTMLElement) => {
+			elm.style.display = "revert";
 		});
 	}
 

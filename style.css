@@ -101,7 +101,7 @@ img, #video {
   display: inline-block;
 }
 
-.friend, .groomsmen, .dev {
+.friend, .groomsmen, .dev, .bridesmaid, .wedding-party {
   display: none;
 }
 

@@ -5,6 +5,7 @@ enum Permission {
 	DEV,
 	FRIEND,
 	GROOMSMEN,
+	BRIDESMAID,
 }
 
 type Entry = {
@@ -109,7 +110,7 @@ export namespace Form {
 		}],
 		["palie", {
 			people: ["Sharie"],
-			permissions: [Permission.FRIEND],
+			permissions: [Permission.FRIEND, Permission.BRIDESMAID],
 		}],
 		["jin", {
 			people: ["Lei", "Kerry", "Raymond", "Lucas"],
@@ -153,15 +154,15 @@ export namespace Form {
 		}],
 		["cheesecake", {
 			people: ["Amy", "John"],
-			permissions: [Permission.FRIEND],
+			permissions: [Permission.FRIEND, Permission.BRIDESMAID],
 		}],
 		["volleyball", {
 			people: ["Amarise", "Niels"],
-			permissions: [Permission.FRIEND],
+			permissions: [Permission.FRIEND, Permission.BRIDESMAID],
 		}],
 		["creampan", {
 			people: ["Harinee", "Shehan"],
-			permissions: [Permission.FRIEND],
+			permissions: [Permission.FRIEND, Permission.BRIDESMAID],
 		}],
 		["poris", {
 			people: ["Daniel", "Margaret"],
@@ -261,6 +262,12 @@ export namespace Form {
 	}
 	export function isGroomsmen() : boolean {
 		return hasPermission(Permission.GROOMSMEN);
+	}
+	export function isBridesmaid() : boolean {
+		return hasPermission(Permission.BRIDESMAID);
+	}
+	export function isWeddingParty() : boolean {
+		return isGroomsmen() || isBridesmaid();
 	}
 	function hasPermission(permission : Permission) : boolean {
 		if (!entries.has(password)) {
