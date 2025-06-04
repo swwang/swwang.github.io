@@ -432,7 +432,7 @@ function start() : void {
 
 	if (Form.isDev()) {
 		mapElements(document.getElementsByClassName("dev"), (elm: HTMLElement) => {
-			elm.style.display = "";
+			elm.style.display = "revert";
 		});
 
 		let emails = document.getElementById("email-links");
