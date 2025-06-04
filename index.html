@@ -23,7 +23,13 @@
         </video>
       </div>
       <div id="blur" class="fill"></div>
-      <div id="start"></div>
+      <div id="password" class="fill">
+        <form id="password-form" action="about:blank" target="iframe-empty" autocomplete="off" required>
+          <input id="password-input" type="text" placeholder="Enter password" maxlength="10">
+          <br>
+          <input id="password-submit" type="submit" value="OK">
+        </form>
+      </div>
       <div id="content" class="fill">
         <div id="menu">
           <div id="menu-container">
@@ -80,21 +86,59 @@
             <div id="welcome" class="section">
                 <span class="section-title"><span class="en">Welcome!</span><span class="zh">欢迎!</span></span>
                 <span class="section-p">
-                  <span class="en">Welcome to Sharon &amp; Brian's wedding website!</span>
-                  <span class="zh">欢迎来到 Sharon 和 Brian 的婚礼网站！</span>
+                  <span class="en">Welcome</span>
+                  <span class="zh">欢迎</span>
+                  <span class="welcome-names"></span>
+                  <span class="en">to Sharon &amp; Brian's wedding website!</span>
+                  <span class="zh">来到 Sharon 和 Brian 的婚礼网站！</span>
+                  <br><br>
+                  <span class="en"><a href="" target="_blank" class="form-link">Click to RSVP</a></span>
+                  <span class="zh"><a href="" target="_blank" class="form-link">敬请回复</a></span>
                 </span>
             </div>
             <div id="rsvp" class="section">
                 <span class="section-title"><span class="en">RSVP</span><span class="zh">敬请回复</span></span>
-                <span class="section-p">
-                  <span class="en">We are so excited to celebrate with you! Expect digital invites soon.</span>
-                  <span class="zh">我们非常高兴能和你们一起庆祝！我们将很快通过电子邮件邀请你。</span>
+                <span class="section-h">
+                  <span><span class="en">Hi</span><span class="zh">你好</span> <span class="welcome-names"></span>!</span>
                 </span>
+                <span class="section-p">
+                  <span class="en">We are so excited to celebrate with you!</span>
+                  <span class="zh">我们非常高兴能和你们一起庆祝！</span>
+                  <br><br>
+                  <span class="en"><a href="" target="_blank" class="form-link">Click to RSVP</a></span>
+                  <span class="zh"><a href="" target="_blank" class="form-link">敬请回复</a></span>
+                </span>
+                <div class="section-block dev">
+                  <br>
+                  <span class="section-h">Dev Console</span>
+                  <span class="section-p" id="email-links"></span>
+                </div>
             </div>
             <div id="schedule" class="section">
                 <span class="section-title">
                   <span class="en">Schedule</span>
                   <span class="zh">日程</span>
+                </span>
+                <span class="friend">
+                  <div class="section-block">
+                    <span class="section-h">
+                      <span class='material-symbols-outlined'>label_important</span>
+                      <span>Friends Celebration!</span>
+                    </span>
+                    <span class="section-p">
+                      <span class='material-symbols-outlined'>event</span>
+                      <span>Saturday August 30</span>
+                    </span>
+                    <span class="section-p">
+                      <span class='material-symbols-outlined'>location_on</span>
+                      <span>Santa Cruz &amp; Scotts Valley</span>
+                    </span>
+                    <br>
+                    <span class="section-p">
+                      Hi <span class="welcome-names"></span>! You're invited to the <strong>secret</strong> Friends Celebration. We'll hang out at the beach, eat dinner, and have a casual party. Feel free to join for any or all of it!
+                    </span>
+                  </div>
+                  <div class="section-separator"></div>
                 </span>
                 <div class="section-block">
                   <span class="section-h">
@@ -114,11 +158,11 @@
                   </span>
                   <span class="section-p">
                     <span class='material-symbols-outlined'>location_on</span>
-                    <a href="https://maps.app.goo.gl/6DzMs3hJYaffxVRY9" target="_blank">Sequoia Retreat Center</a>
+                    <a href="https://maps.app.goo.gl/6DzMs3hJYaffxVRY9" target="_blank">Sequoia Retreat Center in Ben Lomond, CA</a>
                   </span>
                   <span class="section-p">
                     <span class='material-symbols-outlined'>checkroom</span>
-                    <span class="en">Cocktail Attire</span>
+                    <span class="en">Semi-formal</span>
                     <span class="zh">鸡尾酒会服装</span>
                   </span>
                   <br>
@@ -144,18 +188,17 @@
                   </span>
                   <span class="section-p">
                     <span class='material-symbols-outlined'>schedule</span>
-                    <span class="en">TBD</span>
-                    <span class="zh">待定</span>
+                    <span class="en">12pm</span>
+                    <span class="zh">中午12点</span>
                   </span>
                   <span class="section-p">
                     <span class='material-symbols-outlined'>location_on</span>
-                    <span class="en">TBD</span>
-                    <span class="zh">待定</span>
+                    <a href="https://maps.app.goo.gl/ExBPYzLs739BWmf48" target="_blank">Koi Palace in Milpitas, CA</a>
                   </span>
                   <br>
                   <span class="section-p">
-                    <span class="en">Details coming soon</span>
-                    <span class="zh">待定</span>
+                    <span class="en">Please join us for a casual post-wedding celebration brunch at Koi Palace! We'll be eating an absolute FEAST of traditional Cantonese fare.</span>
+                    <span class="zh">请跟我们一起在Koi Palace吃早午饭！我们会吃广东菜。</span>
                   </span>
                 </div>
             </div>
@@ -515,6 +558,7 @@
                   <span class="zh">推荐</span>
                 </span>
                 <div class="section-box">
+                    <span class='material-symbols-outlined'>reviews</span>
                   <span class="en">Choose a location for a rec!</span>
                   <span class="zh">点击查看推荐</span>
                 </div>
@@ -585,10 +629,11 @@
                     <span class="zh">着装要求是什么？</span>
                   </span>
                   <span class="section-p">
-                    <span class="en">Cocktail attire! Our venue is tucked away in a redwood forest, so please bring appropriate footwear for walking on grass and dirt paths between event spaces. We also recommend bringing a light jacket as it can get chilly in the evening.</span>
+                    <span class="en">Semi-formal! <span class="groomsmen">As a Groomsman, remember to wear a tie that matches the wedding colors.</span>Our venue is tucked away in a redwood forest, so please bring appropriate footwear for walking on grass and dirt paths between event spaces. We also recommend bringing a light jacket as it can get chilly in the evening.</span>
                     <span class="zh">鸡尾酒会服装！我们的场地藏匿在红杉林中, 因此在活动场地之间移动时, 请带上合适的鞋子, 准备好在草地和泥土小径上行走。晚上可能有点凉, 我们也建议你带一件薄外套。</span>
                   </span>
                 </div>
+                <div class="section-separator"></div>
                 <div class="section-qa">
                   <span class="section-h">
                     <span class='material-symbols-outlined'>garage</span>
@@ -600,6 +645,7 @@
                     <span class="zh">我们的场地共有40个停车位。请与他人拼车。如果您希望我们帮助您配对, 请跟我们联系！</span>
                   </span>
                 </div>
+                <div class="section-separator"></div>
                 <div class="section-qa">
                   <span class="section-h">
                     <span class='material-symbols-outlined'>accessibility</span>
@@ -610,7 +656,8 @@
                     <span class="en">The venue has dirt walking paths that can be sloped and uneven. For those who wish to minimize walking, we have VIP parking as well as a golf cart for getting around.</span>
                     <span class="zh">场地的步行道是土路，可能有坡度且不平坦。如果希望尽量减少步行，我们提供贵宾停车位和高尔夫球车供您出行。</span>
                   </span>
-                </div>              
+                </div>
+                <div class="section-separator"></div>
                 <div class="section-qa">
                   <span class="section-h">
                     <span class='material-symbols-outlined'>apparel</span>
@@ -622,6 +669,7 @@
                     <span class="zh">加州的天气很好, 但你应该带上防晒霜和夹克。开车时太阳镜很有用。</span>
                   </span>
                 </div>
+                <div class="section-separator"></div>
                 <div class="section-qa">
                   <span class="section-h">
                     <span class='material-symbols-outlined'>featured_seasonal_and_gifts</span>
@@ -633,6 +681,7 @@
                     <span class="zh">没有:)。我们只是想见到大家！</span>
                   </span>
                 </div>
+                <div class="section-separator"></div>
                 <div class="section-qa">
                   <span class="section-h">
                     <span class='material-symbols-outlined'>email</span>

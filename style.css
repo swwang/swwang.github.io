@@ -101,7 +101,56 @@ img, #video {
   display: inline-block;
 }
 
+.friend, .groomsmen, .dev {
+  display: none;
+}
+
 .zh {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: 3.5vmin;
+  }
+  #menu, #info {
+    left: 0;
+    width: 100%;
+  }
+  #info {
+    font-size: 1.8em;
+  }
+  #password {
+    width: 90%;
+    left: 5%;
+    font-size: 2em;
+  }
+}
+
+
+#password {
+  position: absolute;
+
+  width: 60%;
+  left: 20%;
+  margin: 0 auto;
+  top: 40%;
+  text-align: center;
+
+  font-family: "Grandstander", sans-serif;
+  font-size: 1.2em;
+}
+
+#password-input {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+#password-submit:hover {
+  cursor: pointer;
+}
+
+#content {
   display: none;
 }
 
@@ -125,19 +174,6 @@ img, #video {
   text-align: left;
 
   font-family: "Grandstander", sans-serif;
-}
-
-@media screen and (max-width: 1024px) {
-  body {
-    font-size: 3.5vmin;
-  }
-  #menu, #info {
-    left: 0;
-    width: 100%;
-  }
-  #info {
-    font-size: 1.8em;
-  }
 }
 
 #menu-container {
@@ -297,6 +333,7 @@ img, #video {
   display: block;
   font-size: 0.6em;
   text-align: left;
+  margin-bottom: 0.2em;
 }
 
 .section-h {
@@ -385,6 +422,11 @@ img, #video {
 
   background-color: var(--accentHoverColor);
   color: var(--backgroundDarkColor);
+}
+
+.welcome-names {
+  color: var(--accentColor);
+  font-weight: bold;
 }
 
 #characters {

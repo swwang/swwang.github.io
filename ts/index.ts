@@ -1,4 +1,6 @@
 
+import { Form } from 'form'
+
 namespace Id {
 	const rsvp = "rsvp";
 	const schedule = "schedule";
@@ -67,7 +69,7 @@ namespace Bios {
 		["allen", {
 			name: "Allen",
 			title: "Literally Dragaux",
-			desc: "The older brother of the groom. Has a penchant for suffering (running marathons, taking red-eye flights, attending medical school).",
+			desc: "The older brother of the groom. Enjoys suffering (running marathons, taking red-eye flights, attending medical school).",
 			trivia: ["Does pushups for fun", "Once lost 20 times in a row in Smash Bros., refused to give up, and won the 21st match"],
 		}],
 		["derek", {
@@ -98,7 +100,7 @@ namespace Bios {
 			name: "Paul",
 			title: "Cronster",
 			desc: "College friend of the groom. Crafts fantastic art and legitimately funny dad jokes.",
-			trivia: ["Thai food fiend (orders #42 with Thai Iced Tea at Thai Country Cafe)", "Makes the best postcards ever"],
+			trivia: ["Huge fan of Thai Country Cafe", "Makes the best postcards ever"],
 		}],
 		["harinee", {
 			name: "Harinee",
@@ -284,7 +286,6 @@ namespace Recs {
 	export function getBayArea() : [Rec, Rec] {
 		return [rand(bayAreaFood), rand(bayArea)];
 	}
-
 	export function getSantaCruz() : [Rec, Rec] {
 		return [rand(santaCruzFood), rand(santaCruz)];
 	}
@@ -416,6 +417,39 @@ function toggleLanguage() : void {
 }
 
 function start() : void {
+	document.getElementById("password").style.display = "none";
+	document.getElementById("content").style.display = "block";
+
+	mapElements(document.getElementsByClassName("welcome-names"), (elm : HTMLElement) => {
+		elm.textContent = Form.names();
+	});
+	mapElements(document.getElementsByClassName("welcome-name"), (elm : HTMLElement) => {
+		elm.textContent = Form.name();
+	});
+	mapElements(document.getElementsByClassName("form-link"), (elm: HTMLElement) => {
+		(<HTMLLinkElement>elm).href = Form.link();
+	});
+
+	if (Form.isDev()) {
+		mapElements(document.getElementsByClassName("dev"), (elm: HTMLElement) => {
+			elm.style.display = "block";
+		});
+
+		let emails = document.getElementById("email-links");
+		let list = Form.createEmailLinks();
+		emails.appendChild(list);
+	}
+	if (Form.isFriend()) {
+		mapElements(document.getElementsByClassName("friend"), (elm: HTMLElement) => {
+			elm.style.display = "inline-block";
+		});
+	}
+	if (Form.isGroomsmen()) {
+		mapElements(document.getElementsByClassName("groomsmen"), (elm: HTMLElement) => {
+			elm.style.display = "inline-block";
+		});
+	}
+
 	let delay = 0;
 	let offset = 10;
 	for (const id of Id.sectionIds) {
@@ -521,4 +555,20 @@ function start() : void {
 	};
 }
 
-start();
+document.getElementById("password-form").onsubmit = () => {
+	const passwordInput = <HTMLInputElement>document.getElementById("password-input");
+	const password = passwordInput.value.trim().toLowerCase();
+
+	if (Form.tryPassword(password)) {
+		passwordInput.value = "";
+		passwordInput.placeholder = "Welcome!";
+
+		setTimeout(() => {
+			start();
+		}, 500);
+	} else {
+		passwordInput.value = "";
+		passwordInput.placeholder = "Try again!";
+	}
+	return false;
+};

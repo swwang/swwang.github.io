@@ -1,7 +1,311 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./ts/form.ts":
+/*!********************!*\
+  !*** ./ts/form.ts ***!
+  \********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Form = void 0;
+var Permission;
+(function (Permission) {
+    Permission[Permission["UNKNOWN"] = 0] = "UNKNOWN";
+    Permission[Permission["DEV"] = 1] = "DEV";
+    Permission[Permission["FRIEND"] = 2] = "FRIEND";
+    Permission[Permission["GROOMSMEN"] = 3] = "GROOMSMEN";
+})(Permission || (Permission = {}));
+var Form;
+(function (Form) {
+    let password = "";
+    const defaultFormURL = `https://docs.google.com/forms/d/e/1FAIpQLScCPsH6MWmO1GkowfsDrqMz6JgkKWkjnCKOUBdmLabTnUj0lw/viewform?usp=pp_url&entry.1393499076=`;
+    const friendFormURL = `https://docs.google.com/forms/d/e/1FAIpQLSdqbwScYN7D2AAtMrSS-yZ_W8EYkaDSffIoVwvKzlgi0ohcTA/viewform?usp=pp_url&entry.1393499076=`;
+    const entries = new Map([
+        ["bubtown", {
+                people: ["Bub"],
+                permissions: [Permission.DEV, Permission.FRIEND, Permission.GROOMSMEN],
+            }],
+        ["coot", {
+                people: ["Cootie"],
+                permissions: [Permission.DEV, Permission.FRIEND],
+            }],
+        ["bog", {
+                people: ["Boggy Bog", "Bobert Penguin"],
+                permissions: [Permission.FRIEND, Permission.GROOMSMEN],
+            }],
+        ["burrito", {
+                people: ["Astrid Burrito"],
+            }],
+        ["kmabd", {
+                people: ["Mom", "Dad", "Allen", "Derek"],
+            }],
+        ["choi", {
+                people: ["Aunt Jean", "Grandma"],
+            }],
+        ["murtaugh", {
+                people: ["Aunt Diane", "Uncle Pete", "Arthur", "Maggie"],
+            }],
+        ["seibert", {
+                people: ["Uncle Roland", "Marie", "Tanja", "Marcel"],
+            }],
+        ["muffin", {
+                people: ["John", "Meiye"],
+                permissions: [Permission.FRIEND, Permission.GROOMSMEN],
+            }],
+        ["pizza", {
+                people: ["Clarence"],
+                permissions: [Permission.FRIEND, Permission.GROOMSMEN],
+            }],
+        ["thai", {
+                people: ["Paul"],
+                permissions: [Permission.FRIEND, Permission.GROOMSMEN],
+            }],
+        ["maplestory", {
+                people: ["June", "Erika"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["broforce", {
+                people: ["Wei", "Diana"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["fierce", {
+                people: ["Kyle", "Rebecca"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["mercy", {
+                people: ["Kathleen", "David"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["unicode", {
+                people: ["Matt", "Kelsey"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["lunch", {
+                people: ["Chris", "Melody"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["nullptr", {
+                people: ["Bill", "Lucy"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["runner", {
+                people: ["Kelly", "Jordan"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["froyo", {
+                people: ["Ji-eun"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["bopoko", {
+                people: ["Nhan"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["wang", {
+                people: ["Daddy"],
+            }],
+        ["soup", {
+                people: ["Mommy"],
+            }],
+        ["palie", {
+                people: ["Sharie"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["jin", {
+                people: ["Lei", "Kerry", "Raymond", "Lucas"],
+            }],
+        ["fang", {
+                people: ["Minnie", "Frank", "Mila", "Miley"],
+            }],
+        ["gundam", {
+                people: ["Peter"],
+            }],
+        ["baobing", {
+                people: ["Jiujiu", "Jiuma"],
+            }],
+        ["pub", {
+                people: ["Sophia", "Simon"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["panda", {
+                people: ["Amanda", "Kenny", "May"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["mang", {
+                people: ["Stephanie"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["holiday", {
+                people: ["Crystal"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["bob", {
+                people: ["Tiffany", "Stanley"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["penguin", {
+                people: ["Barry"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["potato", {
+                people: ["Luda"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["cheesecake", {
+                people: ["Amy", "John"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["volleyball", {
+                people: ["Amarise", "Niels"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["creampan", {
+                people: ["Harinee", "Shehan"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["poris", {
+                people: ["Daniel", "Margaret"],
+                permissions: [Permission.FRIEND],
+            }],
+        ["nzland", {
+                people: ["Sith", "Doris"],
+                permissions: [Permission.FRIEND],
+            }],
+    ]);
+    function tryPassword(value) {
+        if (entries.has(value)) {
+            password = value;
+            return true;
+        }
+        return false;
+    }
+    Form.tryPassword = tryPassword;
+    function name() {
+        if (!entries.has(password)) {
+            return "esteemed guest";
+        }
+        const people = entries.get(password).people;
+        if (people.length === 0) {
+            return "EMPTY PERSON LIST";
+        }
+        return people[0];
+    }
+    Form.name = name;
+    function names() {
+        return formatNames(password);
+    }
+    Form.names = names;
+    function formatNames(pw) {
+        if (!entries.has(pw)) {
+            return "esteemed guest";
+        }
+        const people = entries.get(pw).people;
+        if (people.length === 0) {
+            return "EMPTY PERSON LIST";
+        }
+        else if (people.length === 1) {
+            return people[0];
+        }
+        else if (people.length === 2) {
+            return people[0] + " and " + people[1];
+        }
+        let slice = people.slice(0, people.length - 1);
+        slice.push("and " + people[people.length - 1]);
+        return slice.join(", ");
+    }
+    function link() {
+        if (!entries.has(password)) {
+            console.error("Invalid password!", password);
+            return "";
+        }
+        const people = entries.get(password).people;
+        if (people.length === 0) {
+            console.error("No people!", password);
+            return "";
+        }
+        if (isFriend()) {
+            return `${friendFormURL}${people.join("%0A")}`;
+        }
+        return `${defaultFormURL}${people.join("%0A")}`;
+    }
+    Form.link = link;
+    function createEmailLinks() {
+        let list = document.createElement("ol");
+        entries.forEach((entry, pw) => {
+            let item = document.createElement("li");
+            const names = formatNames(pw);
+            item.innerHTML = `<a href='./email?names=${names}&password=${pw}' target='_blank'>${names}</a>`;
+            list.appendChild(item);
+        });
+        return list;
+    }
+    Form.createEmailLinks = createEmailLinks;
+    function isDev() {
+        return hasPermission(Permission.DEV);
+    }
+    Form.isDev = isDev;
+    function isFriend() {
+        return hasPermission(Permission.FRIEND);
+    }
+    Form.isFriend = isFriend;
+    function isGroomsmen() {
+        return hasPermission(Permission.GROOMSMEN);
+    }
+    Form.isGroomsmen = isGroomsmen;
+    function hasPermission(permission) {
+        if (!entries.has(password)) {
+            return false;
+        }
+        const permissions = entries.get(password).permissions;
+        if (!permissions || !permissions.includes(permission)) {
+            return false;
+        }
+        return true;
+    }
+})(Form || (exports.Form = Form = {}));
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+var exports = __webpack_exports__;
 /*!*********************!*\
   !*** ./ts/index.ts ***!
   \*********************/
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const form_1 = __webpack_require__(/*! form */ "./ts/form.ts");
 var Id;
 (function (Id) {
     const rsvp = "rsvp";
@@ -64,7 +368,7 @@ var Bios;
         ["allen", {
                 name: "Allen",
                 title: "Literally Dragaux",
-                desc: "The older brother of the groom. Has a penchant for suffering (running marathons, taking red-eye flights, attending medical school).",
+                desc: "The older brother of the groom. Enjoys suffering (running marathons, taking red-eye flights, attending medical school).",
                 trivia: ["Does pushups for fun", "Once lost 20 times in a row in Smash Bros., refused to give up, and won the 21st match"],
             }],
         ["derek", {
@@ -95,7 +399,7 @@ var Bios;
                 name: "Paul",
                 title: "Cronster",
                 desc: "College friend of the groom. Crafts fantastic art and legitimately funny dad jokes.",
-                trivia: ["Thai food fiend (orders #42 with Thai Iced Tea at Thai Country Cafe)", "Makes the best postcards ever"],
+                trivia: ["Huge fan of Thai Country Cafe", "Makes the best postcards ever"],
             }],
         ["harinee", {
                 name: "Harinee",
@@ -380,6 +684,35 @@ function toggleLanguage() {
     english = !english;
 }
 function start() {
+    document.getElementById("password").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    mapElements(document.getElementsByClassName("welcome-names"), (elm) => {
+        elm.textContent = form_1.Form.names();
+    });
+    mapElements(document.getElementsByClassName("welcome-name"), (elm) => {
+        elm.textContent = form_1.Form.name();
+    });
+    mapElements(document.getElementsByClassName("form-link"), (elm) => {
+        elm.href = form_1.Form.link();
+    });
+    if (form_1.Form.isDev()) {
+        mapElements(document.getElementsByClassName("dev"), (elm) => {
+            elm.style.display = "block";
+        });
+        let emails = document.getElementById("email-links");
+        let list = form_1.Form.createEmailLinks();
+        emails.appendChild(list);
+    }
+    if (form_1.Form.isFriend()) {
+        mapElements(document.getElementsByClassName("friend"), (elm) => {
+            elm.style.display = "inline-block";
+        });
+    }
+    if (form_1.Form.isGroomsmen()) {
+        mapElements(document.getElementsByClassName("groomsmen"), (elm) => {
+            elm.style.display = "inline-block";
+        });
+    }
     let delay = 0;
     let offset = 10;
     for (const id of Id.sectionIds) {
@@ -470,7 +803,24 @@ function start() {
         music = !music;
     };
 }
-start();
+document.getElementById("password-form").onsubmit = () => {
+    const passwordInput = document.getElementById("password-input");
+    const password = passwordInput.value.trim().toLowerCase();
+    if (form_1.Form.tryPassword(password)) {
+        passwordInput.value = "";
+        passwordInput.placeholder = "Welcome!";
+        setTimeout(() => {
+            start();
+        }, 500);
+    }
+    else {
+        passwordInput.value = "";
+        passwordInput.placeholder = "Try again!";
+    }
+    return false;
+};
+
+})();
 
 /******/ })()
 ;
