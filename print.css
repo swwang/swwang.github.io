@@ -1,0 +1,136 @@
+body {
+    font-size: 0.5cm;
+}
+
+/* fallback */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v222/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1v-p_4MrImHCIJIZrDCvHOej.woff2) format('woff2');
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  font-size: 1.2em;
+  vertical-align: text-bottom;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+
+  padding-right: 10px;
+}
+
+.page {
+    width: 27.6cm;
+    height: 21.3cm;
+
+    margin: 15mm;
+}
+.left, .right {
+    width: 50%;
+    height: 21cm;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.centered {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 100%;
+}
+.crossword-img {
+    max-width: 100%;
+}
+
+.title, .subtitle, .game-title, .header, .caption, #bingo, #lib-title {
+    font-family: "Grandstander", sans-serif;
+}
+.instruction, #lib {
+    font-family: "Lato", sans-serif;
+}
+
+.instruction {
+    font-size: 1em;
+    margin-bottom: 5mm;
+}
+.title {
+    font-size: 3em;
+}
+.game-title {
+    font-size: 2.5em;
+}
+.subtitle {
+    font-size: 2em;
+    color: #8b8b8b;
+}
+.header, #lib-title {
+    font-size: 1.5em;
+}
+.caption {
+    font-size: 0.7em;
+    font-style: italic;
+
+    max-width: 70%;
+    margin: 3mm auto;
+}
+#bingo {
+    font-size: 0.7em;
+    text-align: center;
+
+    width: 12cm;
+    height: 12cm;
+
+    border: 2mm solid;
+    margin: 5mm auto;
+}
+td {
+    min-width: 25%;
+    min-height: 25%;
+    padding: 2mm;
+    border: 1mm solid;
+}
+
+.line {
+    height: 2cm;
+    width: 10cm;
+    margin: 0 auto;
+    border-bottom: 2mm solid;
+}
+
+#lib {
+    line-height: 2.5em;
+    font-size: 0.9em;
+}
+#lib-box {
+    border: 0.8mm solid;
+    width: 12cm;
+    margin: 0 auto;
+    padding: 3mm;
+}
+.lib-line {
+    line-height: 1em;
+    display: inline-block;
+    min-width: 4cm;
+    color: #b2b2b2;
+    border-bottom: 0.5mm solid black;
+    text-align: center;
+}
+
+.box {
+    border: 2mm solid;
+    width: 10cm;
+    height: 10cm;
+    margin: 0 auto;
+}

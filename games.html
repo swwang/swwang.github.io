@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>sbgames 2025</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="print.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Parisienne|Grandstander:100,300,500">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:regular,italic,bold,bolditalic" />
+
+    <meta name="description" content="Sharon & Brian's wedding website" />
+    <meta property="og:description" content="Sharon & Brian's wedding website" />
+    <meta property="og:title" content="sbwedding 2025" />
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="left centered">
+        <div class="title">sbteam 2025</div>
+        <div class="subtitle">Wedding fun!</div>
+        <br>
+        <div class="box"></div>
+        <div class="caption">Draw something wedding related here</div>
+        <br><br>
+        <div class="header">Property of</div>
+        <div class="line"></div>
+        <div class="caption">The Sequoia Retreat Center<br>August 31 2025</div>
+      </div>
+      <div class="right">
+        <div class="game-title">Wedding Libs</div>
+        <div class="instruction">Find a buddy and ask them to fill in the blanks!</div>
+        <div id="lib-box">
+          <div id="lib-title">Title</div>
+          <div id="lib">Hello</div>
+        </div>
+        <br><br>
+        <div class="game-title">Wedding Hunt</div>
+        <div class="instruction">The (scavenger) hunt is on!<br>Go to <strong>sbteam2025.com/hunt</strong> for your first clue.</div>
+      </div>
+    </div>
+    <div class="page">
+      <div class="left">
+        <div class="game-title">Wedding Guest Bingo</div>
+        <div class="instruction">Below are 25 characteristics of the bride and groom.<br>Find someone who matches each square and try to get bingo!</div>
+        <div class="centered"><table id="bingo"></table></div>
+        <div class="caption centered">Bingo is 5 in a row horizontally, vertically, or diagonally. Each guest is only allowed to sign one square.</div>
+      </div>
+      <div class="right">
+        <div class="game-title">Wedding Crossword</div>
+        <div class="instruction">How well do you know the couple?</div>
+        <div class="centered"><img class="crossword-img" src="./img/crossword.png" alt="Crossword"/><img class="crossword-img" src="./img/clues.png" alt="Clues"/></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // https://crosswordlabs.com/view/2025-06-05-565
+    // sbteam
+
+    function shuffle(array) {
+      let currentIndex = array.length;
+
+      while (currentIndex != 0) {
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+    }
+
+    let squares = [
+      "Ran a marathon",
+      "Bikes to work",
+      "Types >140 wpm",
+      "Has made a pizza",
+      "Can wavedash",
+      "Got suspended from school",
+      "Enjoys badminton",
+      "Has a Costco membership",
+      "Linkin Park fan",
+      "Lived in Iowa",
+      "Volunteers every week",
+      "Speaks 3 languages",
+      "Has >10 house plants",
+      "Can crochet",
+      "Buys treasury bills",
+      "Can Asian squat",
+      "Enjoys Tetris",
+      "Has won a crane machine prize",
+      "Gone camping overnight",
+      "Rode a driverless car",
+      "Has 20/20 vision",
+      "Enjoys kale",
+      "Went stargazing",
+      "Worked on a game",
+      "Lived in another continent",
+      "Enjoys puzzles",
+      "Plays guitar",
+      "Plays chess",
+      "Miles Davis fan",
+      "Rode a driverless car",
+      "Chases sign up bonuses",
+      "Can whistle",
+      "Wants to retire in Hawaii",
+    ];
+
+
+    shuffle(squares);
+    let bingo = document.getElementById("bingo");
+
+    for (let i = 0; i < 5; ++i) {
+      let tr = document.createElement("tr");
+      for (let j = 0; j < 5; ++j) {
+        let td = document.createElement("td");
+
+        let square = "";
+        if (i === 2 && j === 2) {
+          square = "Attended Sharon & Brian's wedding!";
+        } else {
+          square = squares[i * 5 + j];
+        }
+        td.textContent = square;
+
+        if (square.length > 20) {
+          td.style.fontSize = "0.8em";
+        }
+
+        tr.appendChild(td);
+      }
+
+      bingo.appendChild(tr);
+    }
+
+    let libs = new Array(
+      {
+        title: "Officiant",
+        content: "Welcome ^adjective$ guests! My name is ^name$ and I am so ^emotion$ to be your ^adjective$ officiant. ^Name$, I have known you since we were ^age$ and I have to admit, over the last ^time period$ you have become quite ^adjective$! ^Exclamation$! ^Name$, I only met you ^time period$ ago at ^place$ but I could immediately tell you're just such a ^noun$. You two make each other so ^adjective$.",
+      },
+      {
+        title: "Toast",
+        content: "^Greeting$. My name is ^name$ and I'd like to give a ^adjective$ toast. ^Book$ defines 'wedding' as the fusing of two ^things$ with a ^adjective$ torch. Well I think ^name$ and ^name$ are two ^same things$...^adjective$ ^same things$. Please ^verb$ and raise a glass to our ^adjective$ new couple! ^Goodbye$!"
+      },
+      {
+        title: "Mawwiage",
+        content: "^Greeting$. Mawwiage is what brings us together today. That ^adjective$ arrangement, that ^noun$ within a ^noun$! ^Name$ and ^name$ have ^verbed$ here to make this ^adjective$ agreement in front of ^group of people$, promising to ^verb$ in this ^adjective$ and ^adjective$ place. We would not be here today without ^noun$. ^Goodbye$!"
+      },
+      {
+        title: "Motivation",
+        content: "[Bangs ^body part$]. ^Nouns$ alone moves the wheels of love! Have you ever ^verbed$ yourself in ^a time period$ of ^exercise$ how long have we been ^verbing$ for love? [Bangs ^body part$]. ^Group of people$ of ^place$, I ask you once more ^verb$ and be loved in this ^adjective$ hour. FOR IT IS TOGETHER THAT WE ^VERB$!"
+      },
+    )
+    shuffle(libs);
+
+    let libTitle = document.getElementById("lib-title");
+    let lib = document.getElementById("lib");
+
+    libTitle.textContent = libs[0].title;
+
+    let content = libs[0].content;
+    content = content.replaceAll("^", "<span class='lib-line'>");
+    content = content.replaceAll("$", "</span>");
+    lib.innerHTML = content;
+  </script>
+</html>
