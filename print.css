@@ -1,5 +1,5 @@
 body {
-    font-size: 0.5cm;
+    font-size: 0.45cm;
 }
 
 /* fallback */
@@ -33,7 +33,7 @@ body {
     width: 27.6cm;
     height: 21.3cm;
 
-    margin: 15mm;
+    margin: 10mm;
 }
 .left, .right {
     width: 50%;
@@ -52,6 +52,10 @@ body {
 }
 .crossword-img {
     max-width: 100%;
+}
+.content {
+    padding: 5mm;
+    margin: 0 auto;
 }
 
 .title, .subtitle, .game-title, .header, .caption, #bingo, #lib-title {
@@ -111,11 +115,11 @@ td {
 
 #lib {
     line-height: 2.5em;
-    font-size: 0.9em;
+    font-size: 0.85em;
 }
-#lib-box {
+.game-box {
     border: 0.8mm solid;
-    width: 12cm;
+    width: 11cm;
     margin: 0 auto;
     padding: 3mm;
 }
