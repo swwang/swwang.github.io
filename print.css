@@ -35,9 +35,11 @@ body {
 
     margin: 10mm;
 }
+.flipped {
+
+}
 .left, .right {
     width: 50%;
-    height: 21cm;
 }
 .left {
     float: left;
@@ -61,7 +63,7 @@ body {
 .title, .subtitle, .game-title, .header, .caption, #bingo, #lib-title {
     font-family: "Grandstander", sans-serif;
 }
-.instruction, #lib {
+.instruction, #lib, .clues {
     font-family: "Lato", sans-serif;
 }
 
@@ -93,6 +95,12 @@ body {
     max-width: 70%;
     margin: 3mm auto;
 }
+.clues {
+    line-height: 1.5em;
+    font-size: 0.8em;
+    padding-right: 1em;
+}
+
 #bingo {
     font-size: 0.75em;
     text-align: center;
@@ -131,7 +139,7 @@ td {
     line-height: 1em;
     display: inline-block;
     min-width: 4cm;
-    color: #b2b2b2;
+    color: #ebebeb;
     border-bottom: 0.5mm solid black;
     text-align: center;
 }
