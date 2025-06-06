@@ -79,8 +79,12 @@ body {
     font-size: 2em;
     color: #8b8b8b;
 }
-.header, #lib-title {
+.header {
     font-size: 1.5em;
+}
+#lib-title {
+    font-size: 1.5em;
+    text-align: center;
 }
 .caption {
     font-size: 0.7em;
