@@ -605,3 +605,8 @@ document.getElementById("password-form").onsubmit = () => {
 	}
 	return false;
 };
+
+const params = new URLSearchParams(window.location.search);
+if (params.has("code")) {
+	window.location.replace(Form.redirectLink(params.get("code")));
+}

@@ -260,12 +260,16 @@ export namespace Form {
 			let item = document.createElement("li");
 
 			const names = formatNames(pw);
-			item.innerHTML = `<a href='./email?names=${names}&password=${pw}' target='_blank'>${names}</a>`
+			item.innerHTML = `<a href='./email?names=${names}&password=${pw}&showBrowserLink=true' target='_blank'>${names}</a><br><span>sbteam2025.com?code=${pw}</span><br>`
 
 			list.appendChild(item);
 		});
 
 		return list;
+	}
+	export function redirectLink(pw : string) : string {
+		const names = formatNames(pw);
+		return `./email?names=${names}&password=${pw}`;
 	}
 
 	export function isDev() : boolean {
