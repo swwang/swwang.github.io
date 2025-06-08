@@ -58,7 +58,7 @@ export namespace Form {
 			people: ["Uncle Roland", "Marie" ,"Tanja", "Marcel"],
 		}],
 		["muffin", {
-			people: ["John", "Meiye"],
+			people: ["⛄", "Meiye"],
 			permissions: [Permission.FRIEND, Permission.GROOMSMEN],
 		}],
 		["pizza", {
