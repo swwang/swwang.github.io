@@ -109,25 +109,6 @@ img, #video {
   display: none;
 }
 
-@media screen and (max-width: 1024px) {
-  body {
-    font-size: 3.5vmin;
-  }
-  #menu, #info {
-    left: 0;
-    width: 100%;
-  }
-  #info {
-    font-size: 1.8em;
-  }
-  #password {
-    width: 90%;
-    left: 5%;
-    font-size: 2em;
-  }
-}
-
-
 #password {
   position: absolute;
 
@@ -546,84 +527,21 @@ img, #video {
   30%, 70% { opacity: 1 }
 }
 
-
-/*
-#flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: 3.5vmin;
+  }
+  #menu, #info {
+    left: 0;
+    width: 100%;
+  }
+  #info {
+    font-size: 1.8em;
+  }
+  #password {
+    width: 90%;
+    left: 5%;
+    font-size: 2em;
+  }
 }
 
-#button {
-  opacity: 0;
-  background-color: rgba(110, 130, 75, 0.5);
-  font-family: "Parisienne", "Lucida Handwriting", cursive;
-
-  font-size: 2em;
-  padding: 0.8em 1.6em;
-
-  border-radius: 0.5em;
-
-  transition: border-radius ease-in 0.1s, background-color ease-in 0.1s, padding ease-in 0.1s, opacity ease-in 0.6s;
-}
-
-#button:hover {
-  background-color: rgba(110, 130, 75, 0.7);
-  border-radius: 0.3em;
-}
-
-#save {
-  opacity: 0;
-
-  transition: opacity ease-in 2.5s;
-
-  font-family: "Grandstander", sans-serif;
-
-  border: 0.3em solid rgba(255, 250, 220, 1);
-  background-color: rgba(162, 126, 134, 0.5);
-  border-radius: 1em;
-  padding: 0.5em;
-}
-
-#save div {
-  position: relative;
-  padding: 0.4em 1em;
-}
-
-#save-sb {
-  font-size: 2em;
-  font-weight: 500;
-}
-
-#save-date, #save-loc {
-  font-size: 1.3em;
-}
-
-#link-loc {
-  color: rgba(255, 250, 220, 1);
-}
-
-#link-form {
-  color: rgba(255, 250, 220, 1);
-
-  font-weight: 500;
-
-}
-
-#form {
-  font-family: "Grandstander", sans-serif;
-  position: absolute;
-  bottom: -4em;
-  font-size: 1.2em;
-  font-weight: 100;
-  line-height: 1.1em;
-
-  max-width: 60%;
-
-  transition: bottom cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.5s;
-}
-
-.forest {
-  color: rgb(110, 130, 75);
-}
-*/
