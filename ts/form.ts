@@ -105,7 +105,7 @@ export namespace Form {
 			permissions: [Permission.FRIEND],
 		}],
 		["froyo", {
-			people: ["Ji-eun"],
+			people: ["Ji-Eun"],
 			permissions: [Permission.FRIEND],
 		}],
 		["bopoko", {
