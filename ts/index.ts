@@ -76,7 +76,7 @@ namespace Bios {
 			name: "Jingming",
 			title: "Father of the Bride",
 			desc: "The father of the bride. Loves talking to people and has a bit of a sweet tooth.",
-			trivia: ["Big Costco fan", "Helped Brian get his car fixed"],
+			trivia: ["Has been a Costco fan since it was called Price Club", "Helped Brian get his car fixed"],
 		}],
 		["minjun", {
 			name: "Minjun",
