@@ -66,6 +66,30 @@ namespace Bios {
 			desc: "<div class='section-img'><img src='./img/muffin.png' alt='muffin'></div>",
 			trivia: ["Loves poetry (The Charge of the Light Brigade)", "Loves books (The Poisonwood Bible)", "Way too much energy (a screamer)"],
 		}],
+		["lena", {
+			name: "Lena",
+			title: "Mother of the Bride",
+			desc: "The mother of the bride. Runs a profitable online retail operation along with her successful career.",
+			trivia: ["A meal is incomplete without soup", "Recently picked up gardening", "Ask her about her recent go-live"],
+		}],
+		["jingming", {
+			name: "Jingming",
+			title: "Father of the Bride",
+			desc: "The father of the bride. Loves talking to people and has a bit of a sweet tooth.",
+			trivia: ["Big Costco fan", "Helped Brian get his car fixed"],
+		}],
+		["minjun", {
+			name: "Minjun",
+			title: "Mother of the Groom",
+			desc: "The mother of the groom. Literally crocheted all the flowers for this event.",
+			trivia: ["Bakes the best cakes", "Has been tutoring Brian in Mandarin"],
+		}],
+		["kent", {
+			name: "Kent",
+			title: "Father of the Groom",
+			desc: "The father of the groom. Works hard and lets nothing go to waste.",
+			trivia: ["Owns more than one tractor", "Can start a fire <em>right now</em>", "Has lots of surgery stories to tell"],
+		}],
 		["allen", {
 			name: "Allen",
 			title: "Literally Dragaux",
