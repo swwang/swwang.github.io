@@ -398,6 +398,11 @@ img, #video {
   font-size: 0.7em;
 }
 
+.rsvp-button {
+  font-size: 1.5em;
+  margin: 0 auto;
+}
+
 .section-button, #music-button {
   font-family: "Grandstander", sans-serif;
 

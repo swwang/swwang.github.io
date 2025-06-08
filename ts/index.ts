@@ -489,7 +489,6 @@ function start() : void {
 	}
 
 	if (!smallScreen()) {
-		let welcome = Id.getSection("welcome");
 		showSection("welcome");
 	}
 

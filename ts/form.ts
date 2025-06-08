@@ -16,8 +16,8 @@ type Entry = {
 export namespace Form {
 
 	let password = "";
-	const defaultFormURL = `https://docs.google.com/forms/d/e/1FAIpQLScCPsH6MWmO1GkowfsDrqMz6JgkKWkjnCKOUBdmLabTnUj0lw/viewform?usp=pp_url&entry.1393499076=`;
-	const friendFormURL = `https://docs.google.com/forms/d/e/1FAIpQLSdqbwScYN7D2AAtMrSS-yZ_W8EYkaDSffIoVwvKzlgi0ohcTA/viewform?usp=pp_url&entry.1393499076=`;
+	const defaultFormURL = `https://docs.google.com/forms/d/e/1FAIpQLScCPsH6MWmO1GkowfsDrqMz6JgkKWkjnCKOUBdmLabTnUj0lw/viewform?usp=dialog&entry.1393499076=`;
+	const friendFormURL = `https://docs.google.com/forms/d/e/1FAIpQLSdqbwScYN7D2AAtMrSS-yZ_W8EYkaDSffIoVwvKzlgi0ohcTA/viewform?usp=dialog&entry.1393499076=`;
 
 	const entries = new Map<string, Entry>([
 		["bubtown", {
@@ -38,9 +38,17 @@ export namespace Form {
 		}],
 
 		["kmabd", {
-			people: ["Mom", "Dad", "Allen", "Derek"],
+			people: ["Mom", "Dad"],
 		}],
-		["choi", {
+		["metaknight", {
+			people: ["Allen"],
+			permissions: [Permission.FRIEND, Permission.GROOMSMEN],
+		}],
+		["falco", {
+			people: ["Derek"],
+			permissions: [Permission.FRIEND, Permission.GROOMSMEN],
+		}],
+		["dallas", {
 			people: ["Aunt Jean", "Grandma"],
 		}],
 		["murtaugh", {
@@ -102,7 +110,7 @@ export namespace Form {
 			permissions: [Permission.FRIEND],
 		}],
 
-		["wang", {
+		["youloveit", {
 			people: ["Daddy"],
 		}],
 		["soup", {
@@ -115,16 +123,16 @@ export namespace Form {
 		["jin", {
 			people: ["Lei", "Kerry", "Raymond", "Lucas"],
 		}],
-		["fang", {
+		["sun", {
 			people: ["Minnie", "Frank", "Mila", "Miley"],
 		}],
 		["gundam", {
 			people: ["Peter"],
 		}],
 		["baobing", {
-			people: ["Jiujiu", "Jiuma"],
+			people: ["Jiujiu"],
 		}],
-		["pub", {
+		["climbing", {
 			people: ["Sophia", "Simon"],
 			permissions: [Permission.FRIEND],
 		}],
@@ -160,7 +168,7 @@ export namespace Form {
 			people: ["Amarise", "Niels"],
 			permissions: [Permission.FRIEND, Permission.BRIDESMAID],
 		}],
-		["creampan", {
+		["irvine", {
 			people: ["Harinee", "Shehan"],
 			permissions: [Permission.FRIEND, Permission.BRIDESMAID],
 		}],
@@ -171,6 +179,9 @@ export namespace Form {
 		["nzland", {
 			people: ["Sith", "Doris"],
 			permissions: [Permission.FRIEND],
+		}],
+		["house", {
+			people: ["Liching", "Derrick"],
 		}],
 	]);
 
