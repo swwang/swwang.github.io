@@ -57,6 +57,9 @@ export namespace Form {
 		["seibert", {
 			people: ["Uncle Roland", "Marie" ,"Tanja", "Marcel"],
 		}],
+		["wang", {
+			people: ["舅舅", "舅妈", "家人"],
+		}],
 		["muffin", {
 			people: ["⛄", "Meiye"],
 			permissions: [Permission.FRIEND, Permission.GROOMSMEN],
@@ -130,7 +133,7 @@ export namespace Form {
 			people: ["Peter"],
 		}],
 		["baobing", {
-			people: ["Jiujiu"],
+			people: ["舅舅"],
 		}],
 		["climbing", {
 			people: ["Sophia", "Simon"],
