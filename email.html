@@ -65,7 +65,7 @@
   <div style="text-align: center; margin: auto;">
 
     <!-- Email not displaying correctly -->
-    <table id="browser-link" align="center" style="display: none; text-align: center; vertical-align: middle; width: 600px; max-width: 600px;" width="600">
+    <table id="browser-link-table" align="center" style="display: none; text-align: center; vertical-align: middle; width: 600px; max-width: 600px;" width="600">
       <tbody>
         <tr>
           <td style="width: 596px; vertical-align: middle;" width="596">
@@ -205,7 +205,7 @@
     document.title = `Hi ${decodedNames}!`
 
     if (params.has("showBrowserLink")) {
-      document.getElementById("browser-link").style.display = "revert";
+      document.getElementById("browser-link-table").style.display = "revert";
     }
   </script>
 
