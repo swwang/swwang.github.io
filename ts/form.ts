@@ -189,6 +189,10 @@ export namespace Form {
 		["house", {
 			people: ["Liching", "Derrick"],
 		}],
+
+		["sbteam4ever", {
+			people: ["friend"],
+		}],
 	]);
 
 	export function tryPassword(value : string) : boolean {
