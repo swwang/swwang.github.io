@@ -12,25 +12,50 @@ body {
 }
 
 #puzzle-main {
-    width: 80vw;
-    height: 90vh;
+    width: 80vmin;
+    height: 100vh;
+
+    margin: 0 auto;
 
     /* top right bottom left */
     padding: 5vh 10vw 5vh 10vw;
 }
 
-.button, .geo-button {
-    margin: 2em;
-    margin-bottom: 3em;
+.puzzle-title {
+    display: inline-block;
+    border-bottom: 0.2em #e6ddc4 solid;
+}
+
+#answer {
+    width: 60vmin;
+    margin: 2em auto;
+    font-size: 1.5em;
+}
+
+#text {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#button, .geo-button {
     text-align: center;
     padding: 1em;
     border: 3px solid;
     border-radius: 1em;
     cursor: pointer;
+
+    width: 60%;
+    margin: 0 auto;
+    background-color: #e6ddc4;
 }
 
-.button:hover, .geo-button:hover {
+#button:hover, .geo-button:hover {
     text-shadow: 1px 1px 1px #FFFFFF;
+
+    background-color: #fbfbfb;
 }
 
 .puzzle {

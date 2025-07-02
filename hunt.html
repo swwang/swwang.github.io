@@ -13,15 +13,53 @@
         <div class="puzzle-title">SBHunt 2025</div>
         <div class="puzzle" id="puzzle-welcome">
             <div class="puzzle-text">
-                <span class="text-bold">Congratulations!!!</span><br>As the current holder of the <span class="text-purple">Cutest Person Alive Award™</span>, we are honored to invite you to the inaugural <span class="text-bold">BIG puzzle</span>.<br><br><span class="text-small"><span class="text-bold">Disclaimer:</span> the BIG puzzle is not for the faint of heart. Do not attempt if you are or have recently become SMOL.</span>
+                <span class="text-bold">Welcome to the SBWedding Hunt!</span>
+                <br>
             </div>
-
-            <div class="button" id="button-welcome">I AM BIG</div>
+        </div>
+        <div class="puzzle" id="puzzle-test">
+            <div class="puzzle-text">
+                <span class="text-bold">HELLO THIS IS A TEST</span>
+                <br>
+            </div>
+        </div>
+        <div id="answer">
+            <input id="text" type="text" placeholder="Answer" maxlength="12"/>
+            <div id="button">Submit</div>
         </div>
     </div>
     <script>
-        const welcome = document.getElementById("puzzle-welcome");
-        welcome.style.display = "block";
+        const validAnswers = new Set([
+            "test",
+        ]);
+
+        const params = new URLSearchParams(window.location.search);
+        const answer = params.get("a");
+
+        if (!answer || !validAnswers.has(answer)) {
+            const welcome = document.getElementById("puzzle-welcome");
+            welcome.style.display = "block";
+        } else {
+            const puzzle = document.getElementById("puzzle-" + answer);
+            puzzle.style.display = "block";
+        }
+
+        const button = document.getElementById("button");
+        const text = document.getElementById("text");
+
+        button.onclick = () => {
+            const answer = text.value.trim().toLowerCase();
+
+            if (validAnswers.has(answer)) {
+                window.location.href = `${window.location.origin}/hunt?a=${answer}`;
+            } else {
+                text.value = "";
+                text.placeholder = "Try again!";
+                setTimeout(() => {
+                    text.placeholder = "Answer";
+                }, 3000);
+            }
+        };
     </script>
 </body>
 
