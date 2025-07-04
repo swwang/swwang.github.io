@@ -24,6 +24,7 @@ body {
 .puzzle-title {
     display: inline-block;
     border-bottom: 0.2em #e6ddc4 solid;
+    line-height: 1.1em;
 }
 
 .puzzle-text {
