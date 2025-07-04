@@ -7,7 +7,7 @@ body {
     padding: 0;
 
     font-family: "Grandstander", sans-serif;
-    font-size: 3vh;
+    font-size: 3.3vh;
     line-height: 1.3em;
 }
 
@@ -26,10 +26,15 @@ body {
     border-bottom: 0.2em #e6ddc4 solid;
 }
 
+.puzzle-text {
+    font-size: 0.8em;
+    line-height: 1.3em;
+}
+
 #answer {
     width: 60vmin;
     margin: 2em auto;
-    font-size: 1.5em;
+    font-size: 1.1em;
 }
 
 #text {

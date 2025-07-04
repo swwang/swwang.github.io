@@ -14,12 +14,13 @@
         <div class="puzzle" id="puzzle-welcome">
             <div class="puzzle-text">
                 <span class="text-bold">Welcome to the SBWedding Hunt!</span>
-                <br>
+                <br><br>
+                We've hidden several <span class="text-purple">code words</span> at various locations within <span class="text-green">the venue</span>. Your job is to locate these <span class="text-purple">code words</span>, enter them into this app, and use the hints to find the next one. To get started, enter <span class="text-red">sbteam</span> below.
             </div>
         </div>
-        <div class="puzzle" id="puzzle-test">
+        <div class="puzzle" id="puzzle-sbteam">
             <div class="puzzle-text">
-                <span class="text-bold">HELLO THIS IS A TEST</span>
+                <span class="text-bold">HELLO THIS IS THE FIRST PUZZLE</span>
                 <br>
             </div>
         </div>
@@ -30,7 +31,7 @@
     </div>
     <script>
         const validAnswers = new Set([
-            "test",
+            "sbteam",
         ]);
 
         const params = new URLSearchParams(window.location.search);
