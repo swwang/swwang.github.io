@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>sbhost</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Parisienne|Grandstander:100,300,500">
+
+    <style>
+      body {
+        font-size: 3vmin;
+        font-family: "Grandstander";
+      }
+
+      #div-question {
+        margin: 0 auto;
+        padding: 1em;
+        text-align: center;
+
+        font-size: 2em;
+      }
+
+      #question-input {
+        font-size: 0.8em;
+        margin-bottom: 0.5em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div-question">
+      <form id="question-form" action="about:blank" target="iframe-empty" autocomplete="off" onsubmit="return false;">
+        <input id="question-input" type="text" placeholder="Question" required>
+        <br>
+        <input id="question-submit" type="submit" value="Ask!">
+      </form>
+    </div>
+    <div id="stats">
+      <div id="question"></div>
+      <div id="answers"></div>
+    </div>
+    <div id="div-samples">
+
+    </div>
+  </body>
+
+  <script>
+    const host = location.hostname === "localhost" ? "http://localhost:3000" : "https://perch.birdtown.net";
+
+    let input = document.getElementById("question-input");
+    let submit = document.getElementById("question-submit");
+
+    let question = document.getElementById("question");
+    let answers = document.getElementById("answers");
+
+    let allowSubmit = true;
+    let shouldRefresh = false;
+    let version = 0;
+
+    function setEnabled(enabled) {
+      if (allowSubmit === enabled) {
+        return;
+      }
+
+      if (enabled) {
+        input.value = "";
+        submit.value = "Ask!";        
+      } else {
+        submit.value = "Asking...";
+      }
+      allowSubmit = enabled;
+    }
+
+    submit.onclick = () => {
+      if (!allowSubmit) {
+        return;
+      }
+
+      const question = input.value.trim();
+      if (question.length > 0) {
+        setEnabled(false);
+        fetch(`${host}/ask?q=${question}`, { method: "PUT" })
+          .then((response) => {
+            setEnabled(true);
+            shouldRefresh = true;
+          }, () => {
+            setEnabled(true);
+          });
+      }
+    };
+
+    setInterval(() => {
+      if (shouldRefresh) {
+        console.log(`${host}/refresh?v=${version}`);
+        fetch(`${host}/refresh?v=${version}`, { method: "GET" })
+          .then((response) => response.json(), () => {})
+          .then((data) => {
+            console.log(data);
+            if (data.hasOwnProperty("question")) {
+              question.textContent = data["question"];
+            }
+            if (data.hasOwnProperty("version")) {
+              version = Number(data["version"]);
+            }
+          }, () => {});
+      }
+    }, 1000);
+  </script>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>sbvote</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Parisienne|Grandstander:100,300,500">
+
+    <style>
+      body {
+        font-size: 3vmin;
+        font-family: "Grandstander";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div-login">
+      <form id="form-login" action="about:blank" target="iframe-empty" autocomplete="off">
+        <input id="input-name" type="text" placeholder="Name" required>
+        <br>
+        <input id="submit-login" type="submit" value="Join">
+      </form>
+    </div>
+    <div id="div-game">
+      <div id="div-question">
+        <div id="question"></div>
+      </div>
+      <div id="div-vote">
+        <div id="sharon-button">Sharon</div>
+        <div id="brian-button">Brian</div>
+      </div>
+      <div id="div-stats">
+        <div id="answers"></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const host = location.hostname === "localhost" ? "http://localhost:3000" : "https://perch.birdtown.net";
+
+    let name = "Player";
+    let inputName = document.getElementById("input-name");
+
+    let form = document.getElementById("form-login");
+    form.onsubmit = () => {
+      name = inputName.value.trim();
+      return false;
+    }
+
+    let question = document.getElementById("question");
+    let version = 0;
+
+    let sharonButton = document.getElementById("sharon-button");
+    let brianButton = document.getElementById("brian-button");
+
+    function vote(answer) {
+      fetch(`${host}/vote?v=${version}&a=${answer}&id=${name}`, { method: "PUT" })
+        .then((response) => response.json(), () => {})
+        .then((data) => {
+          console.log("VOTED!", data);
+        }, () => {});
+    }
+
+    sharonButton.onclick = () => {
+      vote("Sharon");
+    }
+    brianButton.onclick = () => {
+      vote("Brian");
+    }
+
+    setInterval(() => {
+      console.log(`${host}/refresh?v=${version}`);
+      fetch(`${host}/refresh?v=${version}`, { method: "GET" })
+        .then((response) => response.json(), () => {})
+        .then((data) => {
+          if (data.hasOwnProperty("question")) {
+            question.textContent = data["question"];
+          }
+          if (data.hasOwnProperty("version")) {
+            version = Number(data["version"]);
+          }
+        }, () => {});
+    }, 1000);
+  </script>
+</html>
