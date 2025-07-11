@@ -48,6 +48,7 @@
 
   <script>
     const host = location.hostname === "localhost" ? "http://localhost:3000" : "https://perch.birdtown.net";
+    const interval = 3000;
 
     let input = document.getElementById("question-input");
     let submit = document.getElementById("question-submit");
@@ -106,6 +107,6 @@
             }
           }, () => {});
       }
-    }, 1000);
+    }, interval);
   </script>
 </html>
