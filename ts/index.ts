@@ -18,7 +18,7 @@ namespace Id {
 	export function shouldShow(section : string) : boolean {
 		const now = new Date();
 
-		const showBeach = now.getMonth() === 6 && now.getDate() === 13 && Form.isFriend();
+		const showBeach = now.getMonth() === 7 && now.getDate() === 30 && Form.isFriend();
 		const showEvent = now.getMonth() === 7 && now.getDate() === 31; 
 
 		if (section === beach) {
