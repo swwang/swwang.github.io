@@ -14,6 +14,11 @@
         font-family: "Grandstander";
       }
 
+      #div-content {
+        width: 90%;
+        margin: 0 auto;
+      }
+
       #div-question {
         margin: 0 auto;
         padding: 1em;
@@ -26,23 +31,59 @@
         font-size: 0.8em;
         margin-bottom: 0.5em;
       }
+
+      #stats {
+        text-align: center;
+        margin-bottom: 2em;
+      }
+
+      #samples {
+        text-align: center;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+      }
+
+      #samples-title {
+        font-weight: bold;
+      }
+
+      .question {
+        margin-top: 0.3em;
+        font-weight: bold;
+      }
+
+      .answer {
+        font-size: 0.7em;
+      }
+
+      .sample {
+        border: 1px solid;
+        border-radius: 0.3em;
+        padding: 0.5em;
+        width: 70%;
+        margin: 0.5em auto;
+        font-size: 0.8em;
+      }
+      .sample:hover {
+        cursor: pointer;
+      }
     </style>
   </head>
 
   <body>
-    <div id="div-question">
-      <form id="question-form" action="about:blank" target="iframe-empty" autocomplete="off" onsubmit="return false;">
-        <input id="question-input" type="text" placeholder="Question" required>
-        <br>
-        <input id="question-submit" type="submit" value="Ask!">
-      </form>
-    </div>
-    <div id="stats">
-      <div id="question"></div>
-      <div id="answers"></div>
-    </div>
-    <div id="div-samples">
-
+    <div id="div-content">
+      <div id="div-question">
+        <form id="question-form" action="about:blank" target="iframe-empty" autocomplete="off" onsubmit="return false;">
+          <input id="question-input" type="text" placeholder="Question" required>
+          <br>
+          <input id="question-submit" type="submit" value="Ask!">
+        </form>
+      </div>
+      <div id="stats">
+      </div>
+      <div id="samples">
+        <div id="samples-title">Sample Questions</div>
+      </div>
     </div>
   </body>
 
@@ -50,15 +91,37 @@
     const host = location.hostname === "localhost" ? "http://localhost:3000" : "https://perch.birdtown.net";
     const interval = 3000;
 
+    const questions = [
+      "Who is better at Tetris?",
+      "Who said 'I love you' first?",
+      "Who is more likely to forget birthdays?",
+      "Who sleeps more?",
+      "Who is more musical?",
+    ];
+
     let input = document.getElementById("question-input");
     let submit = document.getElementById("question-submit");
+    let stats = document.getElementById("stats");
+    let samples = document.getElementById("samples");
 
-    let question = document.getElementById("question");
-    let answers = document.getElementById("answers");
+    let questionElm = null;
+    let answersElm = new Map();
 
     let allowSubmit = true;
     let shouldRefresh = false;
     let version = 0;
+
+    questions.forEach((question) => {
+      let q = document.createElement("div");
+      q.classList.add("sample");
+      q.textContent = question;
+      samples.appendChild(q);
+
+      q.onclick = () => {
+        q.style.display = "none";
+        askQuestion(question);
+      }
+    });
 
     function setEnabled(enabled) {
       if (allowSubmit === enabled) {
@@ -75,11 +138,14 @@
     }
 
     submit.onclick = () => {
+      askQuestion(input.value.trim());
+    };
+
+    function askQuestion(question) {
       if (!allowSubmit) {
         return;
       }
 
-      const question = input.value.trim();
       if (question.length > 0) {
         setEnabled(false);
         fetch(`${host}/ask?q=${question}`, { method: "PUT" })
@@ -90,20 +156,56 @@
             setEnabled(true);
           });
       }
-    };
+    }
+
+    function setQuestion(question, ver) {
+      if (version !== ver) {
+        questionElm = document.createElement("div");
+        questionElm.classList.add("question");
+        stats.appendChild(questionElm);
+
+        questionElm.textContent = question;
+        answersElm.clear();
+
+        version = ver;
+      }
+    }
+
+    function populateAnswers(answer, names) {
+      if (!answersElm.has(answer)) {
+        return;
+      }
+
+      let elm = answersElm.get(answer);
+      elm.textContent = `${answer} (${names.length}): ${names.join(", ")}`;
+    }
+
+    function populateStats(data) {
+      for (const key in data) {
+        if (!data.hasOwnProperty(key)) {
+          continue;
+        }
+
+        if (!answersElm.has(key)) {
+          let answerElm = document.createElement("div");
+          answerElm.classList.add("answer");
+          stats.appendChild(answerElm);
+          answersElm.set(key, answerElm);
+        }
+
+        populateAnswers(key, data[key]);
+      }
+    }
 
     setInterval(() => {
       if (shouldRefresh) {
-        console.log(`${host}/refresh?v=${version}`);
         fetch(`${host}/refresh?v=${version}`, { method: "GET" })
           .then((response) => response.json(), () => {})
           .then((data) => {
-            console.log(data);
-            if (data.hasOwnProperty("question")) {
-              question.textContent = data["question"];
-            }
-            if (data.hasOwnProperty("version")) {
-              version = Number(data["version"]);
+            if (data.hasOwnProperty("question") && data.hasOwnProperty("version")) {
+              setQuestion(data["question"], Number(data["version"]));
+            } else {
+              populateStats(data);
             }
           }, () => {});
       }

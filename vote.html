@@ -38,6 +38,8 @@
       #form-login {
         position: relative;
 
+        font-size: 1.5em;
+
         width: 80%;
         top: 45%;
 
@@ -119,6 +121,24 @@
         visibility: hidden;
       }
 
+      .new-voter {
+        font-size: 0.3em;
+        opacity: 0;
+
+        height: 0;
+        overflow: visible;
+
+        transition: all 0.2s ease-in;
+      }
+
+      .pop {
+        animation: pop 3s infinite;
+      }
+
+      @keyframes pop {
+        0%, 100% { font-size: 0em; opacity: 0; }
+        15%, 85% { font-size: 0.4em; opacity: 1; }
+      }
     </style>
   </head>
 
@@ -126,7 +146,7 @@
     <div id="content">
       <div id="div-login">
         <form id="form-login" action="about:blank" target="iframe-empty" autocomplete="off">
-          <input id="input-name" type="text" placeholder="Name" required>
+          <input id="input-name" type="text" placeholder="Who's playing?" required>
           <br>
           <input id="submit-login" type="submit" value="Join">
         </form>
@@ -137,12 +157,14 @@
         </div>
         <div id="div-vote">
           <div id="sharon-button" class="vote-button">
-            <span class="button-text">Sharon</span>
-            <span id="sharon-votes" class="button-votes"></span>
+            <span class="button-text">Sharon<span id="sharon-votes" class="button-votes"></span>
+              <div id="sharon-voter" class="new-voter">Voter</div>
+            </span>
           </div>
           <div id="brian-button" class="vote-button">
-            <span class="button-text">Brian</span>
-            <span id="brian-votes" class="button-votes"></span>
+            <span class="button-text">Brian<span id="brian-votes" class="button-votes"></span>
+              <div id="brian-voter" class="new-voter">Voter</div>
+            </span>
           </div>
         </div>
         <div id="div-stats">
@@ -169,13 +191,14 @@
 
       divLogin.style.display = "none";
       divGame.style.display = "block";
-
       return false;
     }
 
     let question = document.getElementById("question");
     let version = 0;
     let names = new Map();
+    let brianQueue = [];
+    let sharonQueue = [];
 
     let sharonButton = document.getElementById("sharon-button");
     let brianButton = document.getElementById("brian-button");
@@ -185,25 +208,39 @@
     let answers = document.getElementById("answers");
 
     let brianVotes = document.getElementById("brian-votes");
+    let brianVoter = document.getElementById("brian-voter");
     let sharonVotes = document.getElementById("sharon-votes");
+    let sharonVoter = document.getElementById("sharon-voter");
 
     function askQuestion(questionText, questionVersion) {
         question.textContent = questionText;
         version = questionVersion;
         voteEnabled = true;
 
+        if (questionText.length >= 40) {
+          question.style.fontSize = "0.5em";
+        } else if (questionText.length >= 20) {
+          question.style.fontSize = "0.75em";
+        } else {
+          question.style.fontSize = "1em";
+        }
+
         divVote.style.display = "block";
         divStats.style.display = "block";
 
         sharonButton.classList.remove("purple-selected");
-        sharonButton.style.background = `no-repeat url("./img/vote_sharon.png") left, #ae47ff;`;
+        sharonButton.style.background = `no-repeat url("./img/vote_sharon.png") left, linear-gradient(to right, #ae47ff 100%)`
+        sharonButton.style.backgroundSize = "contain";
         brianButton.classList.remove("red-selected");
-        brianButton.style.background = `no-repeat url("./img/vote_brian.png") left, #ff4f4f;`;
+        brianButton.style.background = `no-repeat url("./img/vote_brian.png") left, linear-gradient(to right, #ff4f4f 100%)`
+        brianButton.style.backgroundSize = "contain";
 
         brianVotes.style.visibility = "hidden";
         sharonVotes.style.visibility = "hidden";
 
         names.clear();
+        brianQueue = [];
+        sharonQueue = [];
     }
 
     function vote(answer) {
@@ -240,6 +277,27 @@
       if (numVotes === 0) {
         return;
       }
+
+      if (!names.has("Brian")) {
+        names.set("Brian", new Set());
+      }
+      if (!names.has("Sharon")) {
+        names.set("Sharon", new Set());
+      }
+      brian.forEach((name) => {
+        if (names.get("Brian").has(name)) {
+          return;
+        }
+        brianQueue.push(name);
+        names.get("Brian").add(name);
+      });
+      sharon.forEach((name) => {
+        if (names.get("Sharon").has(name)) {
+          return;
+        }
+        sharonQueue.push(name);
+        names.get("Sharon").add(name);
+      });
 
       brianVotes.style.visibility = "visible";
       sharonVotes.style.visibility = "visible";
@@ -289,6 +347,34 @@
     }
     setInterval(() => {
       refresh();
+
+      let brianVotes = [];
+      for (let i = 0; i < 3; ++i) {
+        if (brianQueue.length <= 0) {
+          break;
+        }
+        brianVotes.push(brianQueue.pop());
+      }
+
+      brianVoter.classList.remove("pop");
+      if (brianVotes.length > 0) {
+        brianVoter.textContent = "+" + brianVotes.join(", ");
+        brianVoter.classList.add("pop");
+      }
+
+      let sharonVotes = [];
+      for (let i = 0; i < 3; ++i) {
+        if (sharonQueue.length <= 0) {
+          break;
+        }
+        sharonVotes.push(sharonQueue.pop());
+      }
+
+      sharonVoter.classList.remove("pop");
+      if (sharonVotes.length > 0) {
+        sharonVoter.textContent = "+" + sharonVotes.join(", ");
+        sharonVoter.classList.add("pop");
+      }
     }, interval);
   </script>
 </html>

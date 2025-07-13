@@ -2,6 +2,8 @@
 import { Form } from 'form'
 
 namespace Id {
+	const beach = "beach";
+	const wedding = "wedding";
 	const rsvp = "rsvp";
 	const schedule = "schedule";
 	const story = "story";
@@ -11,7 +13,25 @@ namespace Id {
 	const faqs = "faqs";
 	const language = "language";
 
-	export const sectionIds = [rsvp, schedule, story, party, gettingAround, forFun, faqs, language];
+	export const sectionIds = [beach, wedding, rsvp, schedule, story, party, gettingAround, forFun, faqs, language];
+
+	export function shouldShow(section : string) : boolean {
+		const now = new Date();
+
+		const showBeach = now.getMonth() === 6 && now.getDate() === 13 && Form.isFriend();
+		const showEvent = now.getMonth() === 7 && now.getDate() === 31; 
+
+		if (section === beach) {
+			return showBeach;
+		}
+		if (section === wedding) {
+			return showEvent;
+		}
+		if (section === rsvp) {
+			return !showEvent;
+		}
+		return true;
+	}
 
 	export function getSection(id : string) : HTMLElement {
 		return document.getElementById(id);
@@ -487,6 +507,12 @@ function start() : void {
 	let delay = 0;
 	let offset = 10;
 	for (const id of Id.sectionIds) {
+		if (!Id.shouldShow(id)) {
+			let button = Id.getButton(id);
+			button.style.display = "none";
+			continue;
+		}
+
 		showButton(id, delay, offset, () => {
 			if (id === "language") {
 				toggleLanguage();
