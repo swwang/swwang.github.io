@@ -219,7 +219,7 @@ namespace Recs {
 	}, {
 		name: "Self Driving Cars",
 		loc: "South Bay",
-		desc: "Self driving cars are real and you can ride them now! Try them out in San Francisco, Sharon & Brian have been working on them for the better part of a decade.",
+		desc: "Self driving cars are real and you can ride them now! Try them out in San Francisco or Mountain View, Sharon & Brian have been working on them for the better part of a decade.",
 	}, {
 		name: "Westfield Valley Fair / Santana Row",
 		loc: "Santa Clara",
@@ -297,9 +297,13 @@ namespace Recs {
 		loc: "Sunnyvale",
 		desc: "Sharon's favorite local boba shop. They make your drink in an instant!",
 	}, {
+		name: "Joyheart Cafe",
+		loc: "San Jose",
+		desc: "Inviting Taiwanese cafe that serves vegetarian homestyle dishes for lunch. Don't miss the adjacent health food store!",
+	}, {
 		name: "Zareen's",
 		loc: "Palo Alto",
-		desc: "Michelin guide casual eatery serving homestyle Pakistani/Indian food.",
+		desc: "Michelin guide casual eatery serving homestyle Pakistani/Indian food. Their chai is delicious!",
 	}];
 
 	const santaCruzFood = [{
