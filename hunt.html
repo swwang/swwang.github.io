@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="puzzle" id="puzzle-sbteam">
-            <div class="puzzle-text">
-                <span class="text-bold">HELLO THIS IS THE FIRST PUZZLE</span>
-                <br>
-            </div>
+            <div class="puzzle-text">Take the <span class="text-bog">grand staircase</span> to the <span class="text-gray">seven generations</span><br>Where we give thanks to all who came before<br>And do our best to gift a <span class="text-green">nice planet</span> to all who come after</div>
+        </div>
+        <div class="puzzle" id="puzzle-generations">
+            <div class="puzzle-text">Return to peace park, where we said our vows<br>Take in the grandeur of the Sequoias<br>Majestic coastal redwoods that stand tall, unyielding<br>Along with the sign about peace on earth</div>
         </div>
         <div id="answer">
             <input id="text" type="text" placeholder="Answer" maxlength="12"/>
@@ -32,6 +32,9 @@
     <script>
         const validAnswers = new Set([
             "sbteam",
+            "generations",
+            "",
+            ""
         ]);
 
         const params = new URLSearchParams(window.location.search);
@@ -48,7 +51,11 @@
         const button = document.getElementById("button");
         const text = document.getElementById("text");
 
-        button.onclick = () => {
+        const submit = () => {
+            if (text.value.length === 0) {
+                return;
+            }
+
             const answer = text.value.trim().toLowerCase();
 
             if (validAnswers.has(answer)) {
@@ -60,6 +67,16 @@
                     text.placeholder = "Answer";
                 }, 3000);
             }
+        }
+
+        addEventListener("keydown", (e) => {
+            if (e.keyCode === 13) {
+                submit();
+            }
+        })
+
+        button.onclick = () => {
+            submit();
         };
     </script>
 </body>
