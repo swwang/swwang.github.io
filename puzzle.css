@@ -144,8 +144,15 @@ body {
 
 .text-small {
     font-size: 0.6em;
-    line-height: 0.6em;
 }
+
+.text-big {
+    font-size: 2em;
+    line-height: 2em;
+    font-weight: bold;
+    color: #a87842;
+}
+
 
 .text-blue {
     color: #31a0f5;

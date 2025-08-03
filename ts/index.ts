@@ -16,10 +16,10 @@ namespace Id {
 	export const sectionIds = [beach, wedding, rsvp, schedule, story, party, gettingAround, forFun, faqs, language];
 
 	export function shouldShow(section : string) : boolean {
-		const now = new Date();
+		const now = Date.now();
 
-		const showBeach = now.getMonth() === 7 && now.getDate() === 30 && Form.isFriend();
-		const showEvent = now.getMonth() === 7 && now.getDate() === 31; 
+		const showBeach = now > 1756580400000 && now < 1756666800000 && Form.isFriend();
+		const showEvent = now > 1756666800000;
 
 		if (section === beach) {
 			return showBeach;

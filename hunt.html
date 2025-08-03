@@ -19,10 +19,19 @@
             </div>
         </div>
         <div class="puzzle" id="puzzle-sbteam">
-            <div class="puzzle-text">Take the <span class="text-bog">grand staircase</span> to the <span class="text-gray">seven generations</span><br>Where we give thanks to all who came before<br>And do our best to gift a <span class="text-green">nice planet</span> to all who come after</div>
+            <div class="puzzle-text">Prepare for <span class="text-red">trouble</span>...<br>...and make it <span class="text-purple">double</span>!<br>To protect the world from <span class="text-green">devastations</span>!<br>To unite all peoples within our <span class="text-blue">nations</span>!<br>You must find the <span class="text-bold">seven generations</span>!!!<br><br><span class="text-small">Get an ice cream taco too!</span></div>
         </div>
-        <div class="puzzle" id="puzzle-generations">
-            <div class="puzzle-text">Return to peace park, where we said our vows<br>Take in the grandeur of the Sequoias<br>Majestic coastal redwoods that stand tall, unyielding<br>Along with the sign about peace on earth</div>
+        <div class="puzzle" id="puzzle-meowth">
+            <div class="puzzle-text"><span class="text-bold">What do they have in common?</span><br><span class="text-blue">Starry Night</span><br><span class="text-bog">Cinnamon Roll</span><br><span class="text-red">Tornado</span><br><span class="text-green">DNA</span><br><br>Can you find it here?</div>
+        </div>
+        <div class="puzzle" id="puzzle-pi">
+            <div class="puzzle-text"><span class="text-brown text-big">△</span><br><br>...where have we seen this before?</div>
+        </div>
+        <div class="puzzle" id="puzzle-triangle">
+            <div class="puzzle-text">I shall be telling this with a sigh<br>Somewhere ages and ages hence:<br>Two roads diverged <span class="text-red">atop the stairs</span> and I—<br>I took the one less traveled by<br>For it was marked with the <span class="text-purple">next clue</span><br>And returned me back to the <span class="text-green">festivities</span>.</div>
+        </div>
+        <div class="puzzle" id="puzzle-party">
+            <div class="puzzle-text"></div>
         </div>
         <div id="answer">
             <input id="text" type="text" placeholder="Answer" maxlength="12"/>
@@ -32,9 +41,10 @@
     <script>
         const validAnswers = new Set([
             "sbteam",
-            "generations",
-            "",
-            ""
+            "meowth",
+            "pi",
+            "triangle",
+            "party",
         ]);
 
         const params = new URLSearchParams(window.location.search);
