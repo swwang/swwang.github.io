@@ -13,7 +13,7 @@ namespace Id {
 	const faqs = "faqs";
 	const language = "language";
 
-	export const sectionIds = [beach, wedding, rsvp, schedule, story, party, gettingAround, forFun, faqs, language];
+	export const sectionIds = [beach, wedding, gettingAround, schedule, story, party, forFun, faqs, language];
 
 	export function shouldShow(section : string) : boolean {
 		const now = Date.now();
