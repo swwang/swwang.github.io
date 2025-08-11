@@ -108,14 +108,14 @@ body {
     width: 12cm;
     height: 12cm;
 
-    border: 2mm solid;
+    border: 1.5mm solid;
     margin: 5mm auto;
 }
 td {
     min-width: 25%;
     min-height: 25%;
     padding: 2mm;
-    border: 1mm solid;
+    border: 0.8mm solid;
 }
 
 .line {
