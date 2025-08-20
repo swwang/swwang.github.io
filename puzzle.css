@@ -150,7 +150,6 @@ body {
     font-size: 2em;
     line-height: 2em;
     font-weight: bold;
-    color: #a87842;
 }
 
 
@@ -176,6 +175,11 @@ body {
 
 .text-bog {
     color: #cfb870;
+    font-weight: bold;
+}
+
+.text-brown {
+    color: #785742;
     font-weight: bold;
 }
 

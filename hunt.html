@@ -13,7 +13,9 @@
         <div class="puzzle-title">SBHunt 2025</div>
         <div class="puzzle" id="puzzle-welcome">
             <div class="puzzle-text">
-                <span class="text-bold">Welcome to the SBWedding Hunt!</span>
+                <span class="text-bold">Welcome Puzzler!</span>
+                <br><br>
+                Take a walk around the Sequoia and explore,<br>It’s a historical site for peace and compassion,<br>Now a beautiful retreat for love, creativity, and reflection...
                 <br><br>
                 We've hidden several <span class="text-purple">code words</span> at various locations within <span class="text-green">the venue</span>. Your job is to locate these <span class="text-purple">code words</span>, enter them into this app, and use the hints to find the next one. To get started, enter <span class="text-red">sbteam</span> below.
             </div>
@@ -25,13 +27,16 @@
             <div class="puzzle-text"><span class="text-bold">What do they have in common?</span><br><span class="text-blue">Starry Night</span><br><span class="text-bog">Cinnamon Roll</span><br><span class="text-red">Tornado</span><br><span class="text-green">DNA</span><br><br>Can you find it here?</div>
         </div>
         <div class="puzzle" id="puzzle-pi">
-            <div class="puzzle-text"><span class="text-brown text-big">△</span><br><br>...where have we seen this before?</div>
+            <div class="puzzle-text">Return to <span class="text-green">peace park</span>, where we promised <span class="text-purple">forever</span><br>Bask in the grandeur of the <span class="text-brown">Sequoias</span><br>Majestic coastal <span class="text-red">redwoods</span><br>Standing tall, unyielding<br>Also <span class="text-purple">forever</span><br><span class="text-brown text-big">△</span></div>
         </div>
-        <div class="puzzle" id="puzzle-triangle">
+        <div class="puzzle" id="puzzle-timeless">
             <div class="puzzle-text">I shall be telling this with a sigh<br>Somewhere ages and ages hence:<br>Two roads diverged <span class="text-red">atop the stairs</span> and I—<br>I took the one less traveled by<br>For it was marked with the <span class="text-purple">next clue</span><br>And returned me back to the <span class="text-green">festivities</span>.</div>
         </div>
         <div class="puzzle" id="puzzle-party">
-            <div class="puzzle-text"></div>
+            <div class="puzzle-text">Well done <span class="text-bold">puzzler</span>!<br><br>You've outdone yourself. Go get a <span class="text-purple">drink</span> and let's <span class="text-red">party</span> away!</div>
+        </div>
+        <div class="puzzle" id="puzzle-dwink">
+            <div class="puzzle-text"><span class="text-big">Congratulations!!!</span><br>You finished the innaugural SBHunt 2025!<br><br><span class="text-bold">Final Secret Word:</span> bog</div>
         </div>
         <div id="answer">
             <input id="text" type="text" placeholder="Answer" maxlength="12"/>
@@ -43,8 +48,9 @@
             "sbteam",
             "meowth",
             "pi",
-            "triangle",
+            "timeless",
             "party",
+            "dwink",
         ]);
 
         const params = new URLSearchParams(window.location.search);
@@ -56,6 +62,10 @@
         } else {
             const puzzle = document.getElementById("puzzle-" + answer);
             puzzle.style.display = "block";
+        }
+
+        if (answer === "dwink") {
+            document.getElementById("answer").style.display = "none";
         }
 
         const button = document.getElementById("button");
