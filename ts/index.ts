@@ -18,8 +18,8 @@ namespace Id {
 	export function shouldShow(section : string) : boolean {
 		const now = Date.now();
 
-		const showBeach = now > 1756580400000 && now < 1756666800000 && Form.isFriend();
-		const showEvent = now > 1756666800000;
+		const showBeach = now > 1756580400000 && now < 1756666800000 && Form.isFriend() || Form.isDev();
+		const showEvent = now > 1756666800000 || Form.isDev();
 
 		if (section === beach) {
 			return showBeach;
@@ -616,6 +616,11 @@ function start() : void {
 
 		music = !music;
 	};
+
+	let voteButton = document.getElementById("vote-button");
+	voteButton.onclick = () => {
+		window.location.href = `./vote?name=${Form.names()}&id=${Math.floor(1000000*Math.random())}`
+	}
 }
 
 document.getElementById("password-form").onsubmit = () => {

@@ -14,6 +14,10 @@
         font-family: "Grandstander";
       }
 
+      label {
+        margin-right: 0.3em;
+      }
+
       #div-content {
         width: 90%;
         margin: 0 auto;
@@ -38,17 +42,25 @@
 
       #stats {
         text-align: center;
-        margin-bottom: 2em;
       }
 
       #samples {
         text-align: center;
         margin-top: 0.3em;
-        margin-bottom: 0.3em;
+        margin-bottom: 2em;
       }
 
-      #samples-title {
+      #samples-title, #standings-title, #answers-title {
         font-weight: bold;
+      }
+
+      #standings, #current-answers {
+        font-size: 0.7em;
+        margin-bottom: 1em;
+      }
+
+      #standings {
+        white-space: pre;
       }
 
       .question {
@@ -58,6 +70,11 @@
 
       .answer {
         font-size: 0.7em;
+      }
+
+      .answer-box {
+        font-size: 0.5em;
+        line-height: 1em;
       }
 
       .sample {
@@ -80,32 +97,61 @@
         <form id="question-form" action="about:blank" target="iframe-empty" autocomplete="off" onsubmit="return false;">
           <input id="question-input" type="text" placeholder="Question" required>
           <br>
-          <input id="question-submit" type="submit" value="Ask!">
+          <span class="answer-box">
+            <span>Answer:</span>
+            <input type="radio" id="radio-sharon" name="question-answer" value="Sharon">
+            <label for="radio-sharon">Sharon</label>
+            <input type="radio" id="radio-brian" name="question-answer" value="Brian">
+            <label for="radio-brian">Brian</label>
+            <input type="radio" id="radio-none" name="question-answer" value="None" checked>
+            <label for="radio-none">None</label>
+            <br>
+            <input id="question-submit" type="submit" value="Ask!">
+          </span>
         </form>
-      </div>
-      <div id="stats">
       </div>
       <div id="samples">
         <div id="samples-title">Sample Questions</div>
+      </div>
+      <div id="stats">
+        <div id="answers-title">Answers</div>
+        <div id="current-answers">
+        </div>
+        <div id="standings-title">Standings</div>
+        <div id="standings">
+          <br><br>
+        </div>
       </div>
     </div>
   </body>
 
   <script>
+    window.onbeforeunload = (e) => {
+      return "Are you sure you want to leave?"
+    }
+
     const host = location.hostname === "localhost" ? "http://localhost:3000" : "https://perch.birdtown.net";
     const interval = 3000;
 
-    const questions = [
-      "Who is better at Tetris?",
-      "Who said 'I love you' first?",
-      "Who is more likely to forget birthdays?",
-      "Who sleeps more?",
-      "Who is more musical?",
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("new")) {
+        fetch(`${host}/start`, { method: "PUT" });
+    }
+
+    const sampleQuestions = [
+      ["Who is better at Tetris?", "Sharon"],
+      ["Who said 'I love you' first?", "Sharon"],
+      ["Who is more likely to forget birthdays?", "Sharon"],
+      ["Who sleeps more?", "Sharon"],
+      ["Who is more musical?", "Brian"],
+      ["Who will get more votes?", ""],
     ];
+    let questionAnswer = "";
 
     let input = document.getElementById("question-input");
     let submit = document.getElementById("question-submit");
-    let stats = document.getElementById("stats");
+    let currentAnswers = document.getElementById("current-answers");
+    let standings = document.getElementById("standings");
     let samples = document.getElementById("samples");
 
     let questionElm = null;
@@ -115,15 +161,27 @@
     let shouldRefresh = false;
     let version = 0;
 
-    questions.forEach((question) => {
+    document.getElementById("radio-sharon").onclick = () => {
+      questionAnswer = "Sharon";
+    };
+    document.getElementById("radio-brian").onclick = () => {
+      questionAnswer = "Brian";
+    };
+    document.getElementById("radio-none").onclick = () => {
+      questionAnswer = "";
+    };
+
+    sampleQuestions.forEach((questionPair) => {
+      const [question, answer] = questionPair;
+
       let q = document.createElement("div");
       q.classList.add("sample");
-      q.textContent = question;
+      q.textContent = question + (answer.length > 0 ? ` [${answer}]` : "");
       samples.appendChild(q);
 
       q.onclick = () => {
         q.style.display = "none";
-        askQuestion(question);
+        askQuestion(question, answer);
       }
     });
 
@@ -142,37 +200,43 @@
     }
 
     submit.onclick = () => {
-      askQuestion(input.value.trim());
+      askQuestion(input.value.trim(), questionAnswer);
     };
 
-    function askQuestion(question) {
+    function askQuestion(question, answer) {
       if (!allowSubmit) {
         return;
       }
 
-      if (question.length > 0) {
-        setEnabled(false);
-        fetch(`${host}/ask?q=${question}`, { method: "PUT" })
-          .then((response) => {
+      if (question.length <= 0) {
+        return;
+      }
+
+      setEnabled(false);
+      fetch(`${host}/ask?q=${question}&a=${answer}`, { method: "PUT" })
+        .then((response) => {
+          if (response.ok) {
             setEnabled(true);
             shouldRefresh = true;
-          }, () => {
+            setQuestion(question, answer);
+          } else {
+            setQuestion("Error: failed to ask question", "");
             setEnabled(true);
-          });
-      }
+          }
+        });
     }
 
-    function setQuestion(question, ver) {
-      if (version !== ver) {
-        questionElm = document.createElement("div");
-        questionElm.classList.add("question");
-        stats.appendChild(questionElm);
+    function setQuestion(question, answer) {
+      questionElm = document.createElement("div");
+      questionElm.classList.add("question");
+      currentAnswers.appendChild(questionElm);
 
-        questionElm.textContent = question;
-        answersElm.clear();
+      questionElm.textContent = question;
 
-        version = ver;
+      if (answer.length > 0) {
+        questionElm.textContent += ` [${answer}]`;
       }
+      answersElm.clear();
     }
 
     function populateAnswers(answer, names) {
@@ -193,7 +257,7 @@
         if (!answersElm.has(key)) {
           let answerElm = document.createElement("div");
           answerElm.classList.add("answer");
-          stats.appendChild(answerElm);
+          currentAnswers.appendChild(answerElm);
           answersElm.set(key, answerElm);
         }
 
@@ -201,18 +265,51 @@
       }
     }
 
+    function populateStandings(data) {
+      let scores = [];
+      standings.textContent = "";
+
+      console.log("data", data);
+
+      for (const key in data) {
+        if (!data.hasOwnProperty(key)) {
+          console.error("Bad key", key);
+          continue;
+        }
+
+        const voter = data[key];
+
+        if (!voter.hasOwnProperty("name") || !voter.hasOwnProperty("score")) {
+          console.error("Invalid voter", voter);
+          continue;
+        }
+
+        scores.push([voter["name"], Number(voter["score"])]);
+      }
+
+      console.log(scores);
+
+      scores.sort((a, b) => {
+        return b[1] - a[1];
+      });
+
+      standings.textContent = scores.map((pair, index) => `${index + 1}. ${pair[0]}: ${pair[1]}`).join("\n");
+    }
+
     setInterval(() => {
       if (shouldRefresh) {
-        fetch(`${host}/refresh?v=${version}`, { method: "GET" })
+        fetch(`${host}/refreshAnswers`, { method: "GET" })
           .then((response) => response.json(), () => {})
           .then((data) => {
-            if (data.hasOwnProperty("question") && data.hasOwnProperty("version")) {
-              setQuestion(data["question"], Number(data["version"]));
-            } else {
-              populateStats(data);
-            }
+            populateStats(data);
           }, () => {});
       }
+
+      fetch(`${host}/standings`, { method: "GET" })
+        .then((response) => response.json(), () => {})
+        .then((data) => {
+          populateStandings(data);
+        }, () => {});
     }, interval);
   </script>
 </html>

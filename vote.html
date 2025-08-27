@@ -77,11 +77,19 @@
         margin-bottom: 0.3em;
       }
 
+      #explanation {
+        font-size: 0.3em;
+      }
+
+      #div-score {
+        text-align: center;
+      }
+
       #sharon-button {
         background: no-repeat url("./img/vote_sharon.png") left, #ae47ff;
         background-size: contain;
       }
-      .purple-selected {
+      .sharon-selected {
         box-shadow: 0 0 1em #ae47ff;
         transform: scale(1.1);
       }
@@ -90,7 +98,7 @@
         background: no-repeat url("./img/vote_brian.png") left, #ff4f4f;
         background-size: contain;
       }
-      .red-selected {
+      .brian-selected {
         box-shadow: 0 0 1em #ff4f4f;
         transform: scale(1.1);
       }
@@ -135,9 +143,18 @@
         animation: pop 3s infinite;
       }
 
+      .pop-once {
+        animation: pop-once 2s;
+      }
+
       @keyframes pop {
         0%, 100% { font-size: 0em; opacity: 0; }
         15%, 85% { font-size: 0.4em; opacity: 1; }
+      }
+
+      @keyframes pop-once {
+        0%, 100% { font-size: 1em; }
+        15%, 85% { font-size: 1.5em; }
       }
     </style>
   </head>
@@ -153,7 +170,7 @@
       </div>
       <div id="div-game">
         <div id="div-question">
-          <div id="question">Waiting for a question...</div>
+          <div id="question">Welcome Friend!<br><br><div id="explanation">Who knows the sbteam best?<br><br>We'll be asking everyone a series of trivia questions related to the bride and groom. Score points by picking the correct answer.<br><br>Some questions will not have a "correct" answer. In these cases, vote with the majority to score a point.<br><br>Whoever has the most points at the end wins!</div></div>
         </div>
         <div id="div-vote">
           <div id="sharon-button" class="vote-button">
@@ -168,7 +185,7 @@
           </div>
         </div>
         <div id="div-stats">
-          <div id="answers"></div>
+          <div id="div-score">Your score: <span id="score">0</span></div>
         </div>
       </div>
     </div>
@@ -179,19 +196,57 @@
     const interval = 3000;
     let voteEnabled = false;
 
+    function register(name, id) {
+      fetch(`${host}/register?n=${name}&id=${id}`, { method: "PUT" })
+        .then((response) => {
+          if (response.ok) {
+            console.log("Register:", response);
+            return response.json;            
+          } else {
+            setQuestion("Failed to login! Please refresh and try again.")
+          }
+        });
+    }
+
+    function vote(answer) {
+      fetch(`${host}/vote?v=${version}&a=${answer}&id=${id}`, { method: "PUT" })
+        .then((response) => response.json(), () => {})
+        .then((data) => {
+          refresh();
+        }, () => {});
+    }
+
     let divLogin = document.getElementById("div-login");
     let divGame = document.getElementById("div-game");
-
-    let name = "Player";
+    let loginForm = document.getElementById("form-login");
     let inputName = document.getElementById("input-name");
-
-    let form = document.getElementById("form-login");
-    form.onsubmit = () => {
+    let name = "Player";
+    let id = "" + Math.floor(1000000 * Math.random());
+    loginForm.onsubmit = () => {
       name = inputName.value.trim();
 
       divLogin.style.display = "none";
       divGame.style.display = "block";
+
+      register(name, id);
+
+      console.log("Logged in! Name: %s, ID: %s", name, id);
       return false;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("id")) {
+      const idParam = params.get("id");
+      if (idParam.length > 0) {
+        id = idParam;
+      }
+    }
+    if (params.has("name")) {
+      const nameParam = params.get("name");
+      if (nameParam.length > 0) {
+        document.getElementById("input-name").value = nameParam;
+        loginForm.onsubmit();
+      }
     }
 
     let question = document.getElementById("question");
@@ -205,33 +260,34 @@
 
     let divVote = document.getElementById("div-vote");
     let divStats = document.getElementById("div-stats");
-    let answers = document.getElementById("answers");
+    let divScore = document.getElementById("div-score");
+    let score = document.getElementById("score");
 
     let brianVotes = document.getElementById("brian-votes");
     let brianVoter = document.getElementById("brian-voter");
     let sharonVotes = document.getElementById("sharon-votes");
     let sharonVoter = document.getElementById("sharon-voter");
 
-    function askQuestion(questionText, questionVersion) {
-        question.textContent = questionText;
+    function askQuestion(questionText, questionVersion, currentScore) {
+        setQuestion(questionText);
+
         version = questionVersion;
         voteEnabled = true;
-
-        if (questionText.length >= 40) {
-          question.style.fontSize = "0.5em";
-        } else if (questionText.length >= 20) {
-          question.style.fontSize = "0.75em";
-        } else {
-          question.style.fontSize = "1em";
-        }
 
         divVote.style.display = "block";
         divStats.style.display = "block";
 
-        sharonButton.classList.remove("purple-selected");
+        if (questionVersion >= 2) {
+          score.textContent = currentScore + "/" + (questionVersion - 1);
+          divScore.classList.remove("pop-once");
+          divScore.offsetHeight;
+          divScore.classList.add("pop-once");
+        }
+
+        sharonButton.classList.remove("sharon-selected");
         sharonButton.style.background = `no-repeat url("./img/vote_sharon.png") left, linear-gradient(to right, #ae47ff 100%)`
         sharonButton.style.backgroundSize = "contain";
-        brianButton.classList.remove("red-selected");
+        brianButton.classList.remove("brian-selected");
         brianButton.style.background = `no-repeat url("./img/vote_brian.png") left, linear-gradient(to right, #ff4f4f 100%)`
         brianButton.style.backgroundSize = "contain";
 
@@ -243,12 +299,15 @@
         sharonQueue = [];
     }
 
-    function vote(answer) {
-      fetch(`${host}/vote?v=${version}&a=${answer}&id=${name}`, { method: "PUT" })
-        .then((response) => response.json(), () => {})
-        .then((data) => {
-          refresh();
-        }, () => {});
+    function setQuestion(questionText) {
+        question.textContent = questionText;
+        if (questionText.length >= 40) {
+          question.style.fontSize = "0.5em";
+        } else if (questionText.length >= 20) {
+          question.style.fontSize = "0.75em";
+        } else {
+          question.style.fontSize = "1em";
+        }
     }
 
     function populateStats(data) {
@@ -318,7 +377,7 @@
       if (!voteEnabled) {
         return;
       }
-      sharonButton.classList.add("purple-selected");
+      sharonButton.classList.add("sharon-selected");
       vote("Sharon");
       voteEnabled = false;
     }
@@ -326,20 +385,21 @@
       if (!voteEnabled) {
         return;
       }
-      brianButton.classList.add("red-selected");
+      brianButton.classList.add("brian-selected");
       vote("Brian");
       voteEnabled = false;
     }
 
     function refresh() {
-      fetch(`${host}/refresh?v=${version}`, { method: "GET" })
+      console.log("Refreshing...", version, id);
+      fetch(`${host}/refresh?v=${version}&id=${id}`, { method: "GET" })
         .then((response) => response.json(), () => {})
         .then((data) => {
           if (!data) {
             return;
           }
           if (data.hasOwnProperty("question") && data.hasOwnProperty("version")) {
-            askQuestion(data["question"], Number(data["version"]));
+            askQuestion(data["question"], Number(data["version"]), Number(data["score"]));
           } else {
             populateStats(data);
           }
