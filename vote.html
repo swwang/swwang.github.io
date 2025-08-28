@@ -83,6 +83,11 @@
 
       #div-score {
         text-align: center;
+        font-size: 1.5em;
+      }
+      #correct-answer, #wrong-answer {
+        display: none;
+        opacity: 0;
       }
 
       #sharon-button {
@@ -147,6 +152,10 @@
         animation: pop-once 2s;
       }
 
+      .pop-fade {
+        animation: pop-fade 2s;
+      }
+
       @keyframes pop {
         0%, 100% { font-size: 0em; opacity: 0; }
         15%, 85% { font-size: 0.4em; opacity: 1; }
@@ -155,6 +164,13 @@
       @keyframes pop-once {
         0%, 100% { font-size: 1em; }
         15%, 85% { font-size: 1.5em; }
+      }
+
+      @keyframes pop-fade {
+        0%, 100% { font-size: 0em; }
+        15%, 85% { font-size: 2em; }
+        0%, 85% { opacity: 1; }
+        100% { opacity: 0; }
       }
     </style>
   </head>
@@ -170,7 +186,7 @@
       </div>
       <div id="div-game">
         <div id="div-question">
-          <div id="question">Welcome Friend!<br><br><div id="explanation">Who knows the sbteam best?<br><br>We'll be asking everyone a series of trivia questions related to the bride and groom. Score points by picking the correct answer.<br><br>Some questions will not have a "correct" answer. In these cases, vote with the majority to score a point.<br><br>Whoever has the most points at the end wins!</div></div>
+          <div id="question">Welcome Friend!<br><br><div id="explanation">Who knows the sbteam best?<br><br>We'll be asking everyone a series of trivia questions related to the bride and groom. Score points by picking the correct answer.<br><br>Some questions are opinion questions and will not have a "correct" answer. In these cases, vote with the majority to score a point.<br><br>Top 3 with the most points at the end win a prize!</div></div>
         </div>
         <div id="div-vote">
           <div id="sharon-button" class="vote-button">
@@ -185,7 +201,7 @@
           </div>
         </div>
         <div id="div-stats">
-          <div id="div-score">Your score: <span id="score">0</span></div>
+          <div id="div-score">Your score: <span id="score">0</span><br><span id="correct-answer">Correct :)</span><span id="wrong-answer">Wrong :(</span></div>
         </div>
       </div>
     </div>
@@ -250,6 +266,8 @@
 
     let question = document.getElementById("question");
     let version = 0;
+    let score = 0;
+
     let names = new Map();
     let brianQueue = [];
     let sharonQueue = [];
@@ -260,7 +278,9 @@
     let divVote = document.getElementById("div-vote");
     let divStats = document.getElementById("div-stats");
     let divScore = document.getElementById("div-score");
-    let score = document.getElementById("score");
+    let spanScore = document.getElementById("score");
+    let correctAnswer = document.getElementById("correct-answer");
+    let wrongAnswer = document.getElementById("wrong-answer");
 
     let brianVotes = document.getElementById("brian-votes");
     let brianVoter = document.getElementById("brian-voter");
@@ -270,17 +290,31 @@
     function askQuestion(questionText, questionVersion, currentScore) {
         setQuestion(questionText);
 
-        version = questionVersion;
         voteEnabled = true;
 
         divVote.style.display = "block";
         divStats.style.display = "block";
 
         if (questionVersion >= 2) {
-          score.textContent = currentScore + "/" + (questionVersion - 1);
-          divScore.classList.remove("pop-once");
-          divScore.offsetHeight;
-          divScore.classList.add("pop-once");
+          spanScore.textContent = currentScore + "/" + (questionVersion - 1);
+
+          if (version === questionVersion - 1) {
+            if (score === Number(currentScore)) {
+              correctAnswer.style.display = "none";
+
+              wrongAnswer.style.display = "inline";
+              wrongAnswer.classList.remove("pop-fade");
+              wrongAnswer.offsetHeight;
+              wrongAnswer.classList.add("pop-fade");
+            } else {
+              wrongAnswer.style.display = "none";
+
+              correctAnswer.style.display = "inline";
+              correctAnswer.classList.remove("pop-fade");
+              correctAnswer.offsetHeight;
+              correctAnswer.classList.add("pop-fade");
+            }
+          }
         }
 
         sharonButton.classList.remove("sharon-selected");
@@ -296,6 +330,9 @@
         names.clear();
         brianQueue = [];
         sharonQueue = [];
+
+        version = questionVersion;
+        score = Number(currentScore);
     }
 
     function setQuestion(questionText) {
@@ -407,31 +444,31 @@
     setInterval(() => {
       refresh();
 
-      let brianVotes = [];
+      let brianVoters = [];
       for (let i = 0; i < 3; ++i) {
         if (brianQueue.length <= 0) {
           break;
         }
-        brianVotes.push(brianQueue.pop());
+        brianVoters.push(brianQueue.pop());
       }
 
       brianVoter.classList.remove("pop");
-      if (brianVotes.length > 0) {
-        brianVoter.textContent = "+" + brianVotes.join(", ");
+      if (brianVoters.length > 0) {
+        brianVoter.textContent = "+" + brianVoters.join(", ");
         brianVoter.classList.add("pop");
       }
 
-      let sharonVotes = [];
+      let sharonVoters = [];
       for (let i = 0; i < 3; ++i) {
         if (sharonQueue.length <= 0) {
           break;
         }
-        sharonVotes.push(sharonQueue.pop());
+        sharonVoters.push(sharonQueue.pop());
       }
 
       sharonVoter.classList.remove("pop");
-      if (sharonVotes.length > 0) {
-        sharonVoter.textContent = "+" + sharonVotes.join(", ");
+      if (sharonVoters.length > 0) {
+        sharonVoter.textContent = "+" + sharonVoters.join(", ");
         sharonVoter.classList.add("pop");
       }
     }, interval);

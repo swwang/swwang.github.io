@@ -111,7 +111,7 @@
         </form>
       </div>
       <div id="samples">
-        <div id="samples-title">Sample Questions</div>
+        <div id="samples-title">Premade Questions</div>
       </div>
       <div id="stats">
         <div id="answers-title">Answers</div>
@@ -130,22 +130,51 @@
       return "Are you sure you want to leave?"
     }
 
+    function shuffle(array) {
+      let currentIndex = array.length;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+    }
+
     const host = location.hostname === "localhost" ? "http://localhost:3000" : "https://perch.birdtown.net";
     const interval = 3000;
 
-    const params = new URLSearchParams(window.location.search);
+    let params = new URLSearchParams(window.location.search);
     if (params.has("new")) {
         fetch(`${host}/start`, { method: "PUT" });
     }
 
-    const sampleQuestions = [
+    let sampleQuestions = [
       ["Who is better at Tetris?", "Sharon"],
       ["Who said 'I love you' first?", "Sharon"],
       ["Who is more likely to forget birthdays?", "Sharon"],
       ["Who sleeps more?", "Sharon"],
+      ["Who is older?", "Sharon"],
+
       ["Who is more musical?", "Brian"],
+      ["Who has been working for longer?", "Brian"],
+      ["Who cooks more?", "Brian"],
+      ["Who made this thing?", "Brian"],
+
       ["Who will get more votes?", ""],
+      ["Who is funnier?", ""],
+      ["Who is messier?", ""],
+      ["Most likely become a humble farmer", ""],
+      ["Most likely to start a revolution", ""],
+      ["Most likely to survive a zombie apocalypse", ""],
     ];
+    shuffle(sampleQuestions);
+    let sampleIndex = 0;
     let questionAnswer = "";
 
     let input = document.getElementById("question-input");
@@ -171,19 +200,28 @@
       questionAnswer = "";
     };
 
-    sampleQuestions.forEach((questionPair) => {
-      const [question, answer] = questionPair;
+    function addSample() {
+      if (sampleIndex >= sampleQuestions.length) {
+        return;
+      }
 
+      const [question, answer] = sampleQuestions[sampleIndex];
       let q = document.createElement("div");
       q.classList.add("sample");
-      q.textContent = question + (answer.length > 0 ? ` [${answer}]` : "");
+      q.textContent = question + (answer.length > 0 ? ` [${answer}]` : " [Opinion]");
       samples.appendChild(q);
 
       q.onclick = () => {
         q.style.display = "none";
         askQuestion(question, answer);
+        addSample();
       }
-    });
+
+      sampleIndex++;
+    }
+    for (let i = 0; i < 5; ++i) {
+      addSample();
+    }
 
     function setEnabled(enabled) {
       if (allowSubmit === enabled) {
@@ -203,7 +241,7 @@
       askQuestion(input.value.trim(), questionAnswer);
     };
 
-    function askQuestion(question, answer) {
+    function askQuestion(question, questionAnswer) {
       if (!allowSubmit) {
         return;
       }
@@ -212,13 +250,17 @@
         return;
       }
 
+      if (questionAnswer.length <= 0) {
+        question = "[Opinion] " + question;
+      }
+
       setEnabled(false);
-      fetch(`${host}/ask?q=${question}&a=${answer}`, { method: "PUT" })
+      fetch(`${host}/ask?q=${question}&a=${questionAnswer}`, { method: "PUT" })
         .then((response) => {
           if (response.ok) {
             setEnabled(true);
             shouldRefresh = true;
-            setQuestion(question, answer);
+            setQuestion(question, questionAnswer);
           } else {
             setQuestion("Error: failed to ask question", "");
             setEnabled(true);
