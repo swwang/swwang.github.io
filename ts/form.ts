@@ -121,7 +121,7 @@ export namespace Form {
 		}],
 		["palie", {
 			people: ["Sharie"],
-			permissions: [Permission.FRIEND, Permission.BRIDESMAID],
+			permissions: [Permission.DEV, Permission.FRIEND, Permission.BRIDESMAID],
 		}],
 		["builder", {
 			people: ["Aunt Jean", "Uncle Chen", "Bob", "Katrina"],
